@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,102 +23,154 @@
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
+    /* тут стили сайта */
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Marcellus&family=Montserrat:wght@300;400;600&display=swap');
+
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
       color: #fff;
-      background: linear-gradient(rgba(90,0,20,0.82), rgba(90,0,20,0.82)),
-                  url("mountains.jpg") no-repeat center/cover;
-      min-height: 100vh;
+      background: 
+        linear-gradient(rgba(70,0,15,0.82), rgba(70,0,15,0.82)),
+        url("mountains.jpg") no-repeat center/cover;
       overflow-x: hidden;
-      border: 4px solid rgba(255,255,255,0.85); /* тонкая светлая рамка */
-      box-sizing: border-box;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px 15px;
     }
+
     .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 20px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 12px;
+      max-width: 640px;
+      width: 100%;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
+
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 3.2em;
-      margin: 10px 0 20px;
+      font-size: 3em;
+      margin-bottom: 0.2em;
+      animation: fadeInDown 1.2s ease;
     }
+
     h2 {
-      font-weight: 400;
-      margin-bottom: 20px;
+      font-size: 1.2em;
+      font-family: 'Marcellus', serif;
+      font-weight: 300;
+      margin-bottom: 1.5em;
+      animation: fadeInDown 1.8s ease;
     }
+
+    .card {
+      background: rgba(255, 255, 255, 0.96);
+      color: #400010;
+      border-radius: 18px;
+      padding: 25px 20px;
+      margin-top: 10px;
+      animation: fadeInUp 1.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Легкая волнистая рамка */
+    .card::before, .card::after {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      border-radius: 18px;
+    }
+
+    .card::before {
+      background: url("data:image/svg+xml;utf8,\
+        <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%'>\
+          <path d='M0,15 Q50,30 100,15 T200,15 T300,15 T400,15 T500,15 T600,15' stroke='white' stroke-width='3' fill='none'/>\
+          <path d='M0,98% Q50,95% 100,98% T200,98% T300,98% T400,98% T500,98% T600,98%' stroke='white' stroke-width='3' fill='none'/>\
+          <path d='M15,0 Q30,50 15,100 T15,200 T15,300 T15,400 T15,500 T15,600' stroke='white' stroke-width='3' fill='none'/>\
+          <path d='M98%,0 Q95%,50 98%,100 T98%,200 T98%,300 T98%,400 T98%,500 T98%,600' stroke='white' stroke-width='3' fill='none'/>\
+        </svg>") no-repeat center/cover;
+    }
+
     .info {
-      font-size: 1.1em;
-      line-height: 1.6em;
-      margin: 20px 0;
+      font-size: 1.05em;
+      margin: 15px 0;
+      line-height: 1.6;
     }
+
     .countdown {
       display: flex;
       justify-content: center;
       gap: 15px;
-      margin: 25px 0;
-      flex-wrap: wrap;
-    }
-    .time-box {
-      background: rgba(128,0,32,0.85);
-      padding: 8px 14px;
-      border-radius: 8px;
-      min-width: 60px;
-      text-align: center;
-    }
-    .time-box span {
-      font-size: 1.4em;
-      display: block;
-      font-weight: bold;
-    }
-    .map-button {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 24px;
-      background: #fff;
-      color: #800020;
-      text-decoration: none;
-      border-radius: 8px;
+      margin: 20px 0 30px;
+      font-size: 1.1em;
       font-weight: 600;
+      color: #5a0014;
+    }
+
+    .map-btn {
+      display: inline-block;
+      background: #5a0014;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      margin: 15px 0;
       transition: 0.3s;
     }
-    .map-button:hover {
-      background: #f4f4f4;
+    .map-btn:hover { background: #7a0020; }
+
+    .footer {
+      margin-top: 20px;
+      font-style: italic;
+      color: #eee;
+      font-family: 'Marcellus', serif;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Мы женимся</h1>
-    <h2>Павел и Адэлаида</h2>
-    
-    <p class="info">
-      Если вы получили это сообщение от нас, то ждём вас<br>
-      <b>18-го октября 2025 года в 14:00</b><br>
-      в ресторане «Gogra» (ул. Керей-Жанибек Хандар, 554/3).<br>
-      (Напротив нижней канатной станции Медео-Чимбулак)<br><br>
-      Главное — приходите и разделите с нами этот день ❤️
-    </p>
+    <h1>Мы женимся!</h1>
+    <h2>Павел & Адэлаида — 18 октября 2025</h2>
 
-    <div class="countdown" id="countdown"></div>
+    <div class="card">
+      <p class="info">📅 <b>18 октября 2025</b> в 14:00 <br>
+      📍 Ресторан «Gogra», ул. Керей-Жанибек Хандар, 554/3<br>
+      (напротив нижней канатной станции Медео–Чимбулак)</p>
 
-    <a href="https://maps.app.goo.gl/1Zfxya1FX5s8vWXo9" class="map-button" target="_blank">
-      📍 Открыть карту
-    </a>
+      <div class="countdown" id="countdown"></div>
+
+      <a class="map-btn" href="https://maps.app.goo.gl/1S56yRjN5VuC1Qh89" target="_blank">Открыть карту</a>
+
+      <p class="info">
+        Если вы получили это сообщение от нас, то ждём вас 18-го октября 2025 года в 14:00 в ресторане «Gogra».<br><br>
+        Главное — приходите и разделите с нами этот день ❤️
+      </p>
+    </div>
+
+    <div class="footer">С теплом, Павел и Адэлаида</div>
   </div>
 
   <script>
-    // Countdown
-    const countdown = document.getElementById('countdown');
-    const weddingDate = new Date("Oct 18, 2025 14:00:00").getTime();
+    const targetDate = new Date("2025-10-18T14:00:00").getTime();
+    const countdown = document.getElementById("countdown");
 
     function updateCountdown() {
       const now = new Date().getTime();
-      const distance = weddingDate - now;
+      const distance = targetDate - now;
 
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -128,13 +178,14 @@
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       countdown.innerHTML = `
-        <div class="time-box"><span>${days}</span>дн</div>
-        <div class="time-box"><span>${hours}</span>ч</div>
-        <div class="time-box"><span>${minutes}</span>мин</div>
-        <div class="time-box"><span>${seconds}</span>сек</div>
+        <div>${days} дн</div>
+        <div>${hours} ч</div>
+        <div>${minutes} м</div>
+        <div>${seconds} с</div>
       `;
     }
 
+    updateCountdown();
     setInterval(updateCountdown, 1000);
   </script>
 </body>
