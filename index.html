@@ -5,55 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Свадебное приглашение</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Montserrat:wght@300;400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Marcellus&family=Montserrat:wght@300;400;600&display=swap');
 
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
       color: #fff;
-      background: linear-gradient(rgba(128,0,32,0.75), rgba(128,0,32,0.75)), 
+      background: linear-gradient(rgba(90,0,20,0.82), rgba(90,0,20,0.82)), 
                   url("mountains.jpg") no-repeat center/cover;
       position: relative;
       overflow-x: hidden;
-      border: 10px solid #fff; /* белая рамка вокруг всего сайта */
+      border: 6px solid #fff; /* тоньше */
       box-sizing: border-box;
       min-height: 100vh;
     }
 
     .container {
-      max-width: 650px;
+      max-width: 640px;
       margin: auto;
-      padding: 30px;
+      padding: 25px;
       text-align: center;
       position: relative;
       z-index: 1;
     }
 
     h1 {
-      font-family: 'Marcellus', serif;
-      font-size: 2.5em;
-      margin-bottom: 0.3em;
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      margin-bottom: 0.2em;
       animation: fadeInDown 1.2s ease;
     }
 
     h2 {
-      font-size: 1.3em;
+      font-size: 1.2em;
+      font-family: 'Marcellus', serif;
       font-weight: 300;
       margin-bottom: 1.5em;
       animation: fadeInDown 1.8s ease;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.96);
       color: #400010;
-      border-radius: 15px;
-      padding: 25px;
-      margin-top: 15px;
+      border-radius: 18px;
+      padding: 25px 20px;
+      margin-top: 10px;
       animation: fadeInUp 1.5s ease;
     }
 
     .info {
-      font-size: 1.1em;
+      font-size: 1.05em;
       margin: 15px 0;
       line-height: 1.6;
     }
@@ -61,23 +62,16 @@
     .countdown {
       display: flex;
       justify-content: center;
-      gap: 12px;
-      margin: 20px 0;
-    }
-
-    .time-box {
-      background: #800020;
-      color: #fff;
-      border-radius: 10px;
-      padding: 10px;
-      min-width: 60px;
+      gap: 18px;
+      margin: 25px 0;
       font-size: 1.2em;
-      font-weight: bold;
+      font-weight: 600;
+      color: #5a0014;
     }
 
     .map-btn {
       display: inline-block;
-      background: #800020;
+      background: #5a0014;
       color: #fff;
       text-decoration: none;
       padding: 12px 25px;
@@ -86,12 +80,13 @@
       margin: 15px 0;
       transition: 0.3s;
     }
-    .map-btn:hover { background: #a00030; }
+    .map-btn:hover { background: #7a0020; }
 
     .footer {
       margin-top: 20px;
       font-style: italic;
       color: #eee;
+      font-family: 'Marcellus', serif;
     }
 
     @keyframes fadeInDown {
@@ -101,6 +96,18 @@
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Волнистая рамка */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 6px solid white;
+      border-radius: 12px;
+      mask-image: radial-gradient(circle at top left, black 97%, transparent 100%);
+      opacity: 0.9;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -141,10 +148,10 @@
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       countdown.innerHTML = `
-        <div class="time-box">${days}<br><small>дн</small></div>
-        <div class="time-box">${hours}<br><small>ч</small></div>
-        <div class="time-box">${minutes}<br><small>м</small></div>
-        <div class="time-box">${seconds}<br><small>с</small></div>
+        <div>${days} дн</div>
+        <div>${hours} ч</div>
+        <div>${minutes} м</div>
+        <div>${seconds} с</div>
       `;
     }
 
