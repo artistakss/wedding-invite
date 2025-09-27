@@ -29,129 +29,99 @@
       margin: 0;
       font-family: 'Montserrat', sans-serif;
       color: #fff;
-      background: linear-gradient(rgba(90,0,20,0.82), rgba(90,0,20,0.82)),
+      background: linear-gradient(rgba(60,0,20,0.85), rgba(60,0,20,0.85)),
                   url("mountains.jpg") no-repeat center/cover;
       min-height: 100vh;
       overflow-x: hidden;
-
-      /* добавляем рамку */
-      border: 4px solid rgba(255,255,255,0.85);
-      box-sizing: border-box;
     }
-
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 20px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 12px;
-      text-align: center;
-    }
-
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 3.2em;
-      margin: 10px 0 20px;
-    }
-
-    h2 {
-      font-weight: 400;
-      margin-bottom: 20px;
-    }
-
-    .info {
-      font-size: 1.1em;
-      line-height: 1.6em;
+      font-size: 3em;
       margin: 20px 0;
     }
-
-    .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin: 25px 0;
-      flex-wrap: wrap;
+    h2 {
+      font-size: 1.5em;
+      font-weight: 400;
+      margin-bottom: 10px;
     }
-
-    .time-box {
-      background: rgba(128,0,32,0.85);
-      padding: 8px 14px;
-      border-radius: 8px;
-      min-width: 60px;
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 30px;
+      background: #fff;
+      color: #333;
+      border-radius: 12px;
+      border: 2px solid #ddd; /* рамка */
       text-align: center;
     }
-
-    .time-box span {
-      font-size: 1.4em;
-      display: block;
+    .date {
       font-weight: bold;
+      font-size: 1.3em;
+      margin: 15px 0;
     }
-
-    .map-button {
+    .countdown {
+      font-size: 1.4em;
+      margin: 20px 0;
+    }
+    .map-btn {
       display: inline-block;
       margin-top: 20px;
       padding: 12px 24px;
-      background: #fff;
-      color: #800020;
+      background: #800020;
+      color: white;
       text-decoration: none;
       border-radius: 8px;
-      font-weight: 600;
       transition: 0.3s;
     }
-
-    .map-button:hover {
-      background: #f4f4f4;
+    .map-btn:hover {
+      background: #a00028;
+    }
+    footer {
+      margin-top: 30px;
+      font-size: 0.95em;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Мы женимся</h1>
+    <h1>Мы женимся!</h1>
     <h2>Павел и Адэлаида</h2>
+    <p class="date">18 октября 2025 года в 14:00</p>
+    <p>Ресторан «Gogra»<br>(ул. Керей-Жанибек Хандар, 554/3, напротив нижней канатной станции Медео-Чимбулак)</p>
     
-    <p class="info">
-      Если вы получили это сообщение от нас, то ждём вас<br>
-      <b>18-го октября 2025 года в 14:00</b><br>
-      в ресторане «Gogra» (ул. Керей-Жанибек Хандар, 554/3).<br>
-      (Напротив нижней канатной станции Медео-Чимбулак)<br><br>
-
-      Будем также рады если вы поддержите нашу цветовую гамму в одежде.<br>
-      Не столь критично, но приятно.<br>
-      Главное — приходите.<br><br>
-
-      С теплом, Павел и Адэлаида ❤️
-    </p>
-
     <div class="countdown" id="countdown"></div>
+    
+    <p>Будем также рады если вы поддержите нашу цветовую гамму в одежде. Не столь критично, но приятно. Главное - приходите.</p>
+    <p>С теплом, Павел и Адэлаида</p>
 
-    <a href="https://maps.app.goo.gl/1Zfxya1FX5s8vWXo9" class="map-button" target="_blank">
-      📍 Открыть карту
-    </a>
+    <a href="https://maps.app.goo.gl/tcXyU2sMKYkgvB3H8" target="_blank" class="map-btn">Открыть карту</a>
+
+    <footer>
+      <p>С любовью ❤️</p>
+    </footer>
   </div>
 
   <script>
-    // Countdown
-    const countdown = document.getElementById('countdown');
+    // Обратный отсчет
+    const countdown = document.getElementById("countdown");
     const weddingDate = new Date("Oct 18, 2025 14:00:00").getTime();
 
-    function updateCountdown() {
+    setInterval(() => {
       const now = new Date().getTime();
       const distance = weddingDate - now;
+
+      if (distance < 0) {
+        countdown.innerHTML = "Событие уже началось!";
+        return;
+      }
 
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      countdown.innerHTML = `
-        <div class="time-box"><span>${days}</span>дн</div>
-        <div class="time-box"><span>${hours}</span>ч</div>
-        <div class="time-box"><span>${minutes}</span>мин</div>
-        <div class="time-box"><span>${seconds}</span>сек</div>
-      `;
-    }
-
-    setInterval(updateCountdown, 1000);
+      countdown.innerHTML = `${days}д ${hours}ч ${minutes}м ${seconds}с`;
+    }, 1000);
   </script>
 </body>
 </html>
