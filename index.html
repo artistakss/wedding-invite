@@ -19,14 +19,20 @@
       min-height: 100vh;
     }
 
-    /* Волнистая рамка */
+    /* Волнистая ленточная рамка */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'><rect x='5' y='5' width='98%25' height='98%25' fill='none' stroke='white' stroke-width='4' stroke-dasharray='15 12' stroke-linecap='round'/></svg>") no-repeat center/cover;
       z-index: 10;
+      background: url("data:image/svg+xml;utf8,\
+        <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%'>\
+          <path d='M0,20 Q50,40 100,20 T200,20 T300,20 T400,20 T500,20 T600,20' stroke='white' stroke-width='4' fill='none'/>\
+          <path d='M0,98% Q50,96% 100,98% T200,98% T300,98% T400,98% T500,98% T600,98%' stroke='white' stroke-width='4' fill='none'/>\
+          <path d='M20,0 Q40,50 20,100 T20,200 T20,300 T20,400 T20,500 T20,600' stroke='white' stroke-width='4' fill='none'/>\
+          <path d='M98%,0 Q96%,50 98%,100 T98%,200 T98%,300 T98%,400 T98%,500 T98%,600' stroke='white' stroke-width='4' fill='none'/>\
+        </svg>") no-repeat center/cover;
     }
 
     .container {
