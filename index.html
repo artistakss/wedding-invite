@@ -12,18 +12,21 @@
       font-family: 'Montserrat', sans-serif;
       color: #fff;
       background: 
-        linear-gradient(rgba(90,0,20,0.82), rgba(90,0,20,0.82)),
+        linear-gradient(rgba(70,0,15,0.82), rgba(70,0,15,0.82)),
         url("mountains.jpg") no-repeat center/cover;
       position: relative;
       overflow-x: hidden;
       min-height: 100vh;
+    }
 
-      /* рамка с прерывистыми волнами */
-      border: 10px solid transparent;
-      border-image: url("data:image/svg+xml;utf8,\
-        <svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='none' stroke='white' stroke-width='3'>\
-          <path d='M0 20 Q10 15 20 20 T40 20' stroke-dasharray='6 12'/>\
-        </svg>") 20 repeat;
+    /* Волнистая рамка */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'><rect x='5' y='5' width='98%25' height='98%25' fill='none' stroke='white' stroke-width='4' stroke-dasharray='15 12' stroke-linecap='round'/></svg>") no-repeat center/cover;
+      z-index: 10;
     }
 
     .container {
@@ -121,7 +124,7 @@
 
       <p class="info">
         Если вы получили это сообщение от нас, то ждём вас 18-го октября 2025 года в 14:00 в ресторане «Gogra».<br><br>
-        Будем рады, если вы поддержите нашу цветовую гамму в одежде. Главное — приходите и разделите с нами этот день ❤️
+        Главное — приходите и разделите с нами этот день ❤️
       </p>
     </div>
 
