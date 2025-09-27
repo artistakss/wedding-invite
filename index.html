@@ -11,23 +11,14 @@
       margin: 0;
       font-family: 'Montserrat', sans-serif;
       color: #fff;
-      background: linear-gradient(rgba(128,0,32,0.9), rgba(128,0,32,0.9)), url("mountains.jpg") no-repeat center/cover;
+      background: linear-gradient(rgba(128,0,32,0.75), rgba(128,0,32,0.75)), 
+                  url("mountains.jpg") no-repeat center/cover;
       position: relative;
       overflow-x: hidden;
+      border: 10px solid #fff; /* белая рамка вокруг всего сайта */
+      box-sizing: border-box;
+      min-height: 100vh;
     }
-
-    /* Декоративные линии */
-    body::before, body::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 80px;
-      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='100%' preserveAspectRatio='none'><path d='M0,0 Q40,50 0,100 T0,200' stroke='white' stroke-width='2' fill='none'/></svg>") repeat-y;
-      opacity: 0.3;
-    }
-    body::before { left: 0; }
-    body::after { right: 0; }
 
     .container {
       max-width: 650px;
@@ -80,7 +71,8 @@
       border-radius: 10px;
       padding: 10px;
       min-width: 60px;
-      animation: popIn 0.8s ease;
+      font-size: 1.2em;
+      font-weight: bold;
     }
 
     .map-btn {
@@ -110,10 +102,6 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    @keyframes popIn {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
   </style>
 </head>
 <body>
@@ -122,14 +110,18 @@
     <h2>Павел & Адэлаида — 18 октября 2025</h2>
 
     <div class="card">
-      <p class="info">📅 <b>18 октября 2025</b> в 14:00 <br>📍 Ресторан «Gogra», ул. Керей-Жанибек Хандар, 554/3<br>(напротив нижней канатной станции Медео–Чимбулак)</p>
+      <p class="info">📅 <b>18 октября 2025</b> в 14:00 <br>
+      📍 Ресторан «Gogra», ул. Керей-Жанибек Хандар, 554/3<br>
+      (напротив нижней канатной станции Медео–Чимбулак)</p>
 
       <div class="countdown" id="countdown"></div>
 
       <a class="map-btn" href="https://maps.app.goo.gl/1S56yRjN5VuC1Qh89" target="_blank">Открыть карту</a>
 
-      <p class="info">Если вы получили это сообщение от нас, то ждём вас 18-го октября 2025 года в 14:00 в ресторане «Gogra».<br><br>
-      Будем рады, если вы поддержите нашу цветовую гамму в одежде (бордовый / белый). Главное — приходите и разделите с нами этот день ❤️</p>
+      <p class="info">
+        Если вы получили это сообщение от нас, то ждём вас 18-го октября 2025 года в 14:00 в ресторане «Gogra».<br><br>
+        Будем рады, если вы поддержите нашу цветовую гамму в одежде. Главное — приходите и разделите с нами этот день ❤️
+      </p>
     </div>
 
     <div class="footer">С теплом, Павел и Адэлаида</div>
@@ -156,6 +148,7 @@
       `;
     }
 
+    updateCountdown();
     setInterval(updateCountdown, 1000);
   </script>
 </body>
