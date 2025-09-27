@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мы женимся!</title>
+
+  <!-- Превью для ссылки -->
+  <meta property="og:title" content="Мы женимся!">
+  <meta property="og:description" content="Приглашаем вас 18 октября 2025 года в 14:00 в ресторан «Gogra».">
+  <meta property="og:image" content="mountains.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://твоя-ссылка.com">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: #800020;
+      color: white;
+      text-align: center;
+    }
+    header {
+      padding: 80px 20px 40px;
+      background: rgba(0,0,0,0.3) url("mountains.jpg") no-repeat center/cover;
+      background-blend-mode: multiply;
+    }
+    header h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+    .details {
+      font-size: 1.3em;
+      margin: 30px auto;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+    .timer {
+      font-size: 1.6em;
+      margin: 20px 0;
+      font-weight: bold;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      margin: 15px 0;
+      background: white;
+      color: #800020;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #f2f2f2;
+    }
+    form {
+      margin-top: 30px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 8px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+    input {
+      width: 200px;
+    }
+    button {
+      background: white;
+      color: #800020;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #ddd;
+    }
+    footer {
+      margin: 40px 0 20px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Мы женимся!</h1>
+  </header>
+
+  <div class="details">
+    📅 Дата: <b>18 октября 2025</b><br>
+    🕒 Время: <b>14:00</b><br>
+    📍 Место: <b>Ресторан «Gogra» (ул. Керей-Жанибек Хандар, 554/3)</b><br>
+    (напротив нижней канатной станции Медео-Чимбулак)
+  </div>
+
+  <div class="timer" id="countdown">Загрузка таймера...</div>
+
+  <a href="https://maps.app.goo.gl/" target="_blank" class="btn">Открыть карту</a>
+
+  <div class="details">
+    Будем также рады, если вы поддержите нашу цветовую гамму в одежде.  
+    Не столь критично, но приятно. Главное — приходите ❤️
+  </div>
+
+  <!-- RSVP -->
+  <form>
+    <input type="text" placeholder="Ваше имя" required>
+    <button type="submit">Подтвердить участие</button>
+  </form>
+
+  <footer>
+    С теплом, Павел и Адэлаида
+  </footer>
+
+  <script>
+    // Таймер обратного отсчёта
+    const eventDate = new Date("2025-10-18T14:00:00").getTime();
+    const countdown = document.getElementById("countdown");
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = eventDate - now;
+
+      if (diff <= 0) {
+        countdown.innerHTML = "Событие началось!";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${days}д ${hours}ч ${minutes}м ${seconds}с`;
+    }, 1000);
+  </script>
+</body>
+</html>
