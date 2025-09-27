@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,13 +22,9 @@
   <link rel="icon" href="https://artistakss.github.io/wedding/mountains.jpg" type="image/png">
 
   <!-- Шрифты -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Marcellus&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* тут стили сайта */
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Marcellus&family=Montserrat:wght@300;400;600&display=swap');
-
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
@@ -34,17 +32,26 @@
       background: 
         linear-gradient(rgba(70,0,15,0.82), rgba(70,0,15,0.82)),
         url("mountains.jpg") no-repeat center/cover;
+      position: relative;
       overflow-x: hidden;
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 30px 15px;
+    }
+
+    /* Ровная тонкая рамка */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      border: 2px solid rgba(255,255,255,0.7);
+      border-radius: 8px;
+      z-index: 10;
     }
 
     .container {
       max-width: 640px;
-      width: 100%;
+      margin: auto;
+      padding: 25px;
       text-align: center;
       position: relative;
       z-index: 1;
@@ -72,27 +79,6 @@
       padding: 25px 20px;
       margin-top: 10px;
       animation: fadeInUp 1.5s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Легкая волнистая рамка */
-    .card::before, .card::after {
-      content: "";
-      position: absolute;
-      left: 0; top: 0; right: 0; bottom: 0;
-      pointer-events: none;
-      border-radius: 18px;
-    }
-
-    .card::before {
-      background: url("data:image/svg+xml;utf8,\
-        <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%'>\
-          <path d='M0,15 Q50,30 100,15 T200,15 T300,15 T400,15 T500,15 T600,15' stroke='white' stroke-width='3' fill='none'/>\
-          <path d='M0,98% Q50,95% 100,98% T200,98% T300,98% T400,98% T500,98% T600,98%' stroke='white' stroke-width='3' fill='none'/>\
-          <path d='M15,0 Q30,50 15,100 T15,200 T15,300 T15,400 T15,500 T15,600' stroke='white' stroke-width='3' fill='none'/>\
-          <path d='M98%,0 Q95%,50 98%,100 T98%,200 T98%,300 T98%,400 T98%,500 T98%,600' stroke='white' stroke-width='3' fill='none'/>\
-        </svg>") no-repeat center/cover;
     }
 
     .info {
