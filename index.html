@@ -1,246 +1,162 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Мы женимся! — Павел & Адэлаида</title>
-
-  <!-- Шрифты -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
-
-  <!-- Open Graph (если позже захочешь превью — укажи полный URL картинки) -->
-  <!-- <meta property="og:image" content="https://username.github.io/repo-name/mountains.jpg"> -->
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Свадебное приглашение</title>
   <style>
-    :root{
-      --burgundy:#7f001f; /* основной бордовый */
-      --burgundy-2:#9e1536;
-      --card-bg: rgba(255,255,255,0.96);
-      --text-dark:#333;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:#7f001f;font-family:'Montserrat',sans-serif;color:var(--text-dark)}
-    /* фон гор */
-    .bg{
-      position:fixed;inset:0;z-index:-3;
-      background-image: url("mountains.jpg");
-      background-position:center; background-size:cover;
-      transform: scale(1.04);
-      filter: contrast(0.95) saturate(0.6) brightness(0.45);
-    }
-    .overlay{
-      position:fixed;inset:0;z-index:-2;
-      background: linear-gradient( to bottom, rgba(127,0,31,0.85) 0%, rgba(127,0,31,0.86) 100%);
+    @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Montserrat:wght@300;400;600&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+      background: linear-gradient(rgba(128,0,32,0.9), rgba(128,0,32,0.9)), url("mountains.jpg") no-repeat center/cover;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    header{padding:72px 20px 20px;text-align:center;color:white}
-    header h1{
-      font-family:'Great Vibes',cursive;
-      font-size:4.2rem;line-height:0.95;margin:0;
-      letter-spacing:1px;
-      opacity:0; transform:translateY(14px);
-      animation:fadeUp .7s ease forwards .15s;
-      text-shadow: 0 6px 18px rgba(0,0,0,0.45);
+    /* Декоративные линии */
+    body::before, body::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='100%' preserveAspectRatio='none'><path d='M0,0 Q40,50 0,100 T0,200' stroke='white' stroke-width='2' fill='none'/></svg>") repeat-y;
+      opacity: 0.3;
     }
-    header p.lead{
-      margin:10px 0 0;font-weight:500;opacity:0;transform:translateY(10px);
-      animation:fadeUp .7s ease forwards .3s;color:rgba(255,255,255,0.92)
-    }
+    body::before { left: 0; }
+    body::after { right: 0; }
 
-    /* карточка */
-    .card{
-      max-width:780px;margin: -30px auto 48px;padding:34px;border-radius:16px;
-      background:var(--card-bg); box-shadow:0 18px 50px rgba(0,0,0,0.25);
-      text-align:center; color:var(--text-dark);
-      opacity:0; transform:translateY(18px);
-      animation:fadeUp .7s ease forwards .5s;
-    }
-
-    .info{ font-size:1.05rem; line-height:1.6; margin-bottom:18px }
-    .muted{ color:#666; font-size:0.95rem }
-
-    /* таймер плитки */
-    .timer{ display:flex; justify-content:center; gap:14px; margin:18px 0 10px; flex-wrap:wrap }
-    .time-box{
-      min-width:78px; padding:16px 12px;border-radius:10px;
-      background:#fff; color:var(--burgundy); font-weight:700; font-size:1.2rem;
-      box-shadow:0 8px 20px rgba(0,0,0,0.08); transform:translateY(8px) scale(.98); opacity:0;
-    }
-    .time-box small{ display:block; font-size:0.7rem; font-weight:500; color:#8a8a8a; margin-top:6px }
-
-    /* кнопки */
-    .btn{
-      display:inline-block; padding:12px 26px; border-radius:28px; text-decoration:none; color:white;
-      background: var(--burgundy); font-weight:700; box-shadow:0 10px 30px rgba(127,0,31,0.28);
-      transition: transform .18s ease, box-shadow .18s ease, background .18s;
-      margin-top:10px;
-    }
-    .btn:hover{ transform:translateY(-3px); box-shadow:0 18px 40px rgba(127,0,31,0.34); background:var(--burgundy-2) }
-
-    /* форма RSVP */
-    .rsvp{ margin-top:22px; display:flex; justify-content:center; gap:10px; flex-wrap:wrap }
-    .rsvp input[type="text"]{
-      padding:12px 14px;border-radius:10px;border:1px solid #e0e0e0;width:240px;font-size:1rem;
-      box-shadow: inset 0 1px 0 rgba(0,0,0,0.02);
-    }
-    .rsvp button{ padding:12px 18px;border-radius:10px;border:none;background:var(--burgundy);color:#fff;font-weight:700;cursor:pointer }
-
-    /* footer */
-    footer{ margin-top:18px;color:#666;font-style:italic }
-
-    /* Toast (подтверждение) */
-    .toast{
-      position:fixed; left:50%; transform:translateX(-50%); bottom:28px;
-      background:#111;color:#fff;padding:12px 18px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,0.4);
-      opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;
-    }
-    .toast.show{ opacity:1; transform: translateX(-50%) translateY(0) }
-
-    /* анимации */
-    @keyframes fadeUp {
-      from { opacity:0; transform: translateY(16px) }
-      to   { opacity:1; transform: translateY(0) }
-    }
-    @keyframes pop {
-      0%{ transform: scale(.95) }
-      60%{ transform: scale(1.06) }
-      100%{ transform: scale(1) }
+    .container {
+      max-width: 650px;
+      margin: auto;
+      padding: 30px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
-    /* адаптив */
-    @media (max-width:560px){
-      header h1{ font-size:3.2rem }
-      .time-box{ min-width:62px; padding:12px 10px; font-size:1.05rem }
-      .card{ margin: -24px 12px 36px; padding:26px }
-      .rsvp input{ width:160px }
+    h1 {
+      font-family: 'Marcellus', serif;
+      font-size: 2.5em;
+      margin-bottom: 0.3em;
+      animation: fadeInDown 1.2s ease;
+    }
+
+    h2 {
+      font-size: 1.3em;
+      font-weight: 300;
+      margin-bottom: 1.5em;
+      animation: fadeInDown 1.8s ease;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      color: #400010;
+      border-radius: 15px;
+      padding: 25px;
+      margin-top: 15px;
+      animation: fadeInUp 1.5s ease;
+    }
+
+    .info {
+      font-size: 1.1em;
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .time-box {
+      background: #800020;
+      color: #fff;
+      border-radius: 10px;
+      padding: 10px;
+      min-width: 60px;
+      animation: popIn 0.8s ease;
+    }
+
+    .map-btn {
+      display: inline-block;
+      background: #800020;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      margin: 15px 0;
+      transition: 0.3s;
+    }
+    .map-btn:hover { background: #a00030; }
+
+    .footer {
+      margin-top: 20px;
+      font-style: italic;
+      color: #eee;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes popIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
 <body>
-
-  <div class="bg" aria-hidden="true"></div>
-  <div class="overlay" aria-hidden="true"></div>
-
-  <header>
+  <div class="container">
     <h1>Мы женимся!</h1>
-    <p class="lead">Павел &amp; Адэлаида — 18 октября 2025</p>
-  </header>
+    <h2>Павел & Адэлаида — 18 октября 2025</h2>
 
-  <main>
-    <section class="card" role="region" aria-label="Приглашение">
-      <div class="info">
-        <div><strong>📅 18 октября 2025</strong> — <strong>🕒 14:00</strong></div>
-        <div class="muted">📍 Ресторан «Gogra», ул. Керей-Жанибек Хандар, 554/3 (напротив нижней канатной станции Медео-Чимбулак)</div>
-      </div>
+    <div class="card">
+      <p class="info">📅 <b>18 октября 2025</b> в 14:00 <br>📍 Ресторан «Gogra», ул. Керей-Жанибек Хандар, 554/3<br>(напротив нижней канатной станции Медео–Чимбулак)</p>
 
-      <!-- Таймер -->
-      <div class="timer" id="countdown">
-        <div class="time-box" id="box-days">-- <small>дн</small></div>
-        <div class="time-box" id="box-hours">-- <small>ч</small></div>
-        <div class="time-box" id="box-mins">-- <small>м</small></div>
-        <div class="time-box" id="box-secs">-- <small>с</small></div>
-      </div>
+      <div class="countdown" id="countdown"></div>
 
-      <!-- Карта -->
-      <a class="btn" id="map-link" target="_blank" rel="noopener"
-         href="https://www.google.com/maps/search/?api=1&query=Gogra+Restaurant+Kerei-Zhanibek+Khandar+554%2F3+Almaty">
-        Открыть карту
-      </a>
+      <a class="map-btn" href="https://maps.app.goo.gl/1S56yRjN5VuC1Qh89" target="_blank">Открыть карту</a>
 
-      <div class="info" style="margin-top:18px;">
-        Будем рады, если вы поддержите нашу цветовую гамму в одежде. Главное — приходите и разделите с нами этот день ❤️
-      </div>
+      <p class="info">Если вы получили это сообщение от нас, то ждём вас 18-го октября 2025 года в 14:00 в ресторане «Gogra».<br><br>
+      Будем рады, если вы поддержите нашу цветовую гамму в одежде (бордовый / белый). Главное — приходите и разделите с нами этот день ❤️</p>
+    </div>
 
-      <!-- RSVP -->
-      <form id="rsvp-form" class="rsvp" onsubmit="return false;">
-        <input id="guest-name" type="text" placeholder="Ваше имя" required />
-        <button id="rsvp-btn" type="submit">Подтвердить</button>
-      </form>
-
-      <footer>С теплом, Павел и Адэлаида</footer>
-    </section>
-  </main>
-
-  <div id="toast" class="toast" role="status" aria-live="polite">Спасибо, мы получили подтверждение</div>
+    <div class="footer">С теплом, Павел и Адэлаида</div>
+  </div>
 
   <script>
-    // Таймер и анимация появления таймер-блоков
-    const eventDate = new Date("2025-10-18T14:00:00").getTime();
-    const boxes = {
-      days: document.getElementById('box-days'),
-      hours: document.getElementById('box-hours'),
-      mins: document.getElementById('box-mins'),
-      secs: document.getElementById('box-secs')
-    };
+    const targetDate = new Date("2025-10-18T14:00:00").getTime();
+    const countdown = document.getElementById("countdown");
 
-    // постепенное появление time-box'ов
-    function revealBoxes(){
-      const els = Object.values(boxes);
-      els.forEach((el,i)=>{
-        setTimeout(()=> {
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-          el.style.animation = 'pop .45s cubic-bezier(.2,.9,.2,1)';
-        }, 130 * i + 200);
-      });
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `
+        <div class="time-box">${days}<br><small>дн</small></div>
+        <div class="time-box">${hours}<br><small>ч</small></div>
+        <div class="time-box">${minutes}<br><small>м</small></div>
+        <div class="time-box">${seconds}<br><small>с</small></div>
+      `;
     }
 
-    function updateTimer(){
-      const now = Date.now();
-      const diff = eventDate - now;
-      if(diff <= 0){
-        document.getElementById('countdown').innerHTML = '<div style="font-weight:700;color:var(--burgundy);">Событие началось!</div>';
-        return;
-      }
-      const d = Math.floor(diff / (1000*60*60*24));
-      const h = Math.floor( (diff % (1000*60*60*24)) / (1000*60*60) );
-      const m = Math.floor( (diff % (1000*60*60)) / (1000*60) );
-      const s = Math.floor( (diff % (1000*60)) / 1000 );
-
-      boxes.days.innerHTML = d + '<br><small>дн</small>';
-      boxes.hours.innerHTML = h + '<br><small>ч</small>';
-      boxes.mins.innerHTML = m + '<br><small>м</small>';
-      boxes.secs.innerHTML = s + '<br><small>с</small>';
-
-      // лёгкая "пульсация" при обновлении
-      Object.values(boxes).forEach(b=>{
-        b.style.transition = 'transform .18s';
-        b.style.transform = 'scale(1.02)';
-        setTimeout(()=> b.style.transform = 'scale(1)', 160);
-      });
-    }
-
-    // старт
-    revealBoxes();
-    updateTimer();
-    const ticker = setInterval(updateTimer, 1000);
-
-    // RSVP без сервера — локально + небольшое уведомление
-    const form = document.getElementById('rsvp-form');
-    const toast = document.getElementById('toast');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('guest-name').value.trim();
-      if(!name) return;
-      // сохраняем локально (можно заменить на fetch->API если будет бэкенд)
-      const saved = JSON.parse(localStorage.getItem('rsvp-list') || '[]');
-      saved.push({name, time: new Date().toISOString()});
-      localStorage.setItem('rsvp-list', JSON.stringify(saved));
-      // показываем тост
-      toast.textContent = `Спасибо, ${name}! Мы получили подтверждение ❤️`;
-      toast.classList.add('show');
-      setTimeout(()=> toast.classList.remove('show'), 3000);
-      form.reset();
-    });
-
-    // Подсказка: если хочешь, чтобы RSVP приходило на почту — можно сделать mailto:
-    // document.getElementById('rsvp-btn').addEventListener('click', () => {
-    //   window.location.href = 'mailto:youremail@example.com?subject=RSVP&body=Я%20подтверждаю%20участие';
-    // });
-
-    // Подстраиваем карты: если нужно точное место — замени href карты на ссылку "Share" из Google Maps
-    // Пример: https://www.google.com/maps/search/?api=1&query=Gogra+Restaurant+Kerei-Zhanibek+Khandar+554%2F3+Almaty
-
+    setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
