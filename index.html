@@ -11,7 +11,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://artistakss.github.io/wedding-invite/">
 
-  <!-- Единственный гарнитур для цельности + поддержка акцентов весами -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
@@ -55,7 +55,7 @@
       mix-blend-mode:overlay;
     }
 
-    /* Единый фон: фото + бордовый градиент */
+    /* Единый фон: СТАТИЧНЫЙ, без дерганий при скролле (убрал background-attachment: fixed) */
     .bg{
       position: fixed; inset: 0; z-index: 0;
       background-image:
@@ -64,9 +64,9 @@
       background-size: cover, cover;
       background-position: center, center;
       background-repeat: no-repeat, no-repeat;
-      background-attachment: fixed, fixed;
       background-blend-mode: multiply;
       filter: contrast(.95) brightness(.95);
+      transform: translateZ(0); /* сглаживание */
     }
 
     /* Рамка */
@@ -97,6 +97,7 @@
       letter-spacing:2px;
       color:var(--sand);
       position:relative;
+      text-shadow: 0 0 12px rgba(201,170,113,.35);
     }
     .monogram::after{
       content:""; position:absolute; inset:-1px; border-radius:50%;
@@ -136,15 +137,37 @@
 
     /* Панели */
     .panel{
+      position:relative;
       border:1px solid rgba(255,255,255,.14);
       border-radius:18px;
-      padding:36px 30px;
+      padding:44px 34px;
       background:var(--card-fill);
       backdrop-filter: blur(2px);
       transition:.35s ease;
+      overflow:hidden;
     }
     .panel:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.22);background:var(--card-fill-hover)}
-    .title{font-size:30px;font-weight:600;color:var(--sand);margin-bottom:12px}
+
+    /* Угловые золотые уголки (очень деликатно) */
+    .panel::before, .panel::after{
+      content:""; position:absolute; width:64px; height:64px; opacity:.18;
+      background: center/contain no-repeat url('data:image/svg+xml;utf8,\
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">\
+          <path d="M2,32 Q2,8 26,8 M62,32 Q62,56 38,56" fill="none" stroke="%23C9AA71" stroke-width="1.2"/>\
+        </svg>');
+      pointer-events:none;
+    }
+    .panel::before{left:-4px; top:-4px; transform:rotate(0deg)}
+    .panel::after{right:-4px; bottom:-4px; transform:rotate(180deg)}
+
+    .title{
+      font-size:30px;font-weight:600;color:var(--sand);margin-bottom:14px;position:relative;display:inline-block
+    }
+    .title::after{
+      content:""; position:absolute; left:0; bottom:-8px; height:2px; width:100%;
+      background:linear-gradient(90deg, var(--gold), transparent);
+      border-radius:2px;
+    }
     .text{font-size:20px}
     .text i{color:var(--gold);margin-right:12px}
 
@@ -155,7 +178,18 @@
       color: var(--light-text);
     }
     .panel--light .title{color:#3C3433}
+    .panel--light .title::after{background:linear-gradient(90deg, #B9894D, transparent)}
     .panel--light .text i{color:#B9894D}
+    .panel--light::before, .panel--light::after{opacity:.14}
+
+    /* Волнистые разделители между сценами */
+    .wave{
+      height:40px; margin:-20px 0 -20px 0; opacity:.55;
+      background: center/cover no-repeat url('data:image/svg+xml;utf8,\
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200" preserveAspectRatio="none">\
+          <path d="M0,120 C240,180 480,60 720,120 C960,180 1200,60 1440,120 L1440,200 L0,200 Z" fill="%23ffffff" fill-opacity="0.10"/>\
+        </svg>');
+    }
 
     /* Палитры */
     .palettes{display:grid;gap:28px;margin-top:10px;grid-template-columns: repeat(auto-fit,minmax(280px,1fr))}
@@ -190,7 +224,7 @@
 
     /* Цитата */
     .quote{
-      margin:8px 0 0; padding:22px 18px; border-left:2px solid var(--gold);
+      margin:10px 0 0; padding:22px 18px; border-left:2px solid var(--gold);
       background:rgba(0,0,0,.08); border-radius:8px;
       font-style:italic; color:var(--sand);
     }
@@ -226,23 +260,10 @@
     .radio{display:flex;align-items:center;gap:10px;font-size:18px}
     .panel--light .input,.panel--light .select{border:1px solid rgba(45,42,42,.18); background:rgba(255,255,255,.55); color:var(--light-text)}
 
-    /* Плавающая CTA */
-    .cta{
-      position:fixed; right:20px; bottom:22px; z-index:6;
-      display:flex; gap:10px; align-items:center;
-      filter: drop-shadow(0 6px 18px rgba(0,0,0,.3));
-    }
-    .cta .pill{
-      background:rgba(0,0,0,.25); border:1px solid rgba(255,255,255,.18);
-      color:var(--warm); padding:12px 16px; border-radius:999px;
-      backdrop-filter: blur(6px); font-size:14px;
-    }
-    .cta .btn{border-color:rgba(255,255,255,.22)}
-
-    /* Падающие лепестки */
+    /* Падающие лепестки (бережно) */
     .petal{
       position:fixed; top:-40px; width:16px; height:12px; border-radius:60% 40% 60% 40%;
-      background:rgba(255,255,255,.35);
+      background:rgba(255,255,255,.28);
       filter: blur(.2px);
       animation: fall linear infinite, sway ease-in-out infinite;
       z-index:2; pointer-events:none;
@@ -250,7 +271,7 @@
     @keyframes fall{to{transform:translateY(110vh)}}
     @keyframes sway{
       0%,100%{margin-left:0; transform:rotate(0deg)}
-      50%{margin-left:20px; transform:rotate(8deg)}
+      50%{margin-left:16px; transform:rotate(8deg)}
     }
 
     /* Footer */
@@ -268,11 +289,11 @@
   </style>
 </head>
 <body>
-  <!-- Фон и текстура -->
+  <!-- Статичный фон + текстура -->
   <div class="bg"></div>
   <div class="grain"></div>
 
-  <!-- Лепестки (легкая анимация) -->
+  <!-- Лепестки -->
   <div id="petals"></div>
 
   <div class="container">
@@ -294,7 +315,7 @@
       </div>
     </section>
 
-    <div class="rule"></div>
+    <div class="wave"></div>
 
     <!-- Блок 2 (светлый) -->
     <section class="section">
@@ -311,7 +332,7 @@
       </div>
     </section>
 
-    <div class="rule"></div>
+    <div class="wave"></div>
 
     <!-- Блок 3 -->
     <section class="section">
@@ -331,7 +352,7 @@
       </div>
     </section>
 
-    <div class="rule"></div>
+    <div class="wave"></div>
 
     <!-- Блок 4 (светлый) -->
     <section class="section">
@@ -394,7 +415,7 @@
       </div>
     </section>
 
-    <div class="rule"></div>
+    <div class="wave"></div>
 
     <!-- Блок 5 -->
     <section class="section">
@@ -435,14 +456,6 @@
       <small>С теплом и любовью</small><br>
       <span class="love"><i class="fa-solid fa-heart"></i> Павел и Адэлаида</span>
     </div>
-  </div>
-
-  <!-- Плавающая CTA -->
-  <div class="cta">
-    <div class="pill">Есть минутка подтвердить?</div>
-    <a href="#rsvp" class="btn" onclick="document.getElementById('rsvp').scrollIntoView({behavior:'smooth'})">
-      <i class="fa-regular fa-paper-plane"></i> RSVP
-    </a>
   </div>
 
   <script>
@@ -489,17 +502,17 @@
       alert('Откроется WhatsApp с готовым сообщением. Нажмите «Отправить».');
     });
 
-    // Генерация лепестков
+    // Лепестки (бережная анимация, без дерганий фона)
     const petals = document.getElementById('petals');
-    const petalCount = 10; // держим минимально и легко
+    const petalCount = 10;
     for(let i=0;i<petalCount;i++){
       const p = document.createElement('div');
       p.className = 'petal';
       const left = Math.random()*100;
       const delay = Math.random()*6;
-      const duration = 10 + Math.random()*10;
+      const duration = 12 + Math.random()*10;
       p.style.left = left+'vw';
-      p.style.animationDuration = duration+'s, '+(3+Math.random()*3)+'s';
+      p.style.animationDuration = duration+'s, '+(4+Math.random()*3)+'s';
       p.style.animationDelay = delay+'s, '+(delay/2)+'s';
       petals.appendChild(p);
     }
@@ -514,7 +527,7 @@
         }
       });
     },{threshold:.15});
-    document.querySelectorAll('.panel, .hero, .rule, .orn').forEach(el=>{
+    document.querySelectorAll('.panel, .hero, .rule, .orn, .wave').forEach(el=>{
       el.style.opacity=.01;
       el.style.transform='translateY(18px)';
       el.style.transition='opacity .6s ease, transform .6s ease';
