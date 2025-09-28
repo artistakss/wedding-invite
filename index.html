@@ -25,23 +25,23 @@
   <!-- Фавиконка -->
   <link rel="icon" href="https://raw.githubusercontent.com/artistakss/wedding-invite/main/mountains.jpg" type="image/png">
 
-  <!-- Элегантные шрифты -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <!-- Современные элегантные шрифты -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
   <style>
     :root {
-      /* Основная палитра */
-      --burgundy: #8B1538;
-      --light-burgundy: #A63E5C;
-      --pastel-burgundy: #D4A5A5;
+      /* Основная палитра - бургунди */
+      --burgundy: #722F37;
+      --dark-burgundy: #5A1F26;
+      --light-burgundy: #8B3A42;
       --cream: #F7F3F0;
       --warm-white: #FEFCFB;
       --soft-gray: #E8E4E1;
       
       /* Акценты */
       --gold: #D4AF37;
-      --rose-gold: #E8B4B8;
+      --rose-gold: #C49A6C;
       --sage: #9CAF88;
       --dusty-blue: #8FA3B3;
     }
@@ -53,11 +53,11 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-weight: 300;
       color: var(--warm-white);
       background: 
-        linear-gradient(135deg, rgba(139,21,56,0.95), rgba(166,62,92,0.9)),
+        linear-gradient(135deg, var(--burgundy) 0%, var(--dark-burgundy) 100%),
         url("mountains.jpg") no-repeat center/cover;
       background-attachment: fixed;
       min-height: 100vh;
@@ -71,7 +71,7 @@
       position: fixed;
       inset: 8px;
       pointer-events: none;
-      border: 1px solid rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.15);
       border-radius: 4px;
       z-index: 1000;
     }
@@ -101,9 +101,9 @@
     }
 
     h1 {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'DM Serif Display', serif;
       font-size: 4.5em;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--warm-white);
       margin-bottom: 15px;
       letter-spacing: 2px;
@@ -112,7 +112,7 @@
     }
 
     .couple-names {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'DM Serif Display', serif;
       font-size: 2.2em;
       font-weight: 400;
       color: var(--rose-gold);
@@ -122,7 +122,7 @@
     }
 
     .date {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-size: 1.3em;
       font-weight: 300;
       color: var(--cream);
@@ -137,40 +137,27 @@
     }
 
     .info-block {
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
       padding: 40px 35px;
       margin: 30px 0;
       text-align: center;
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
       position: relative;
       overflow: hidden;
     }
 
-    .info-block::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .info-block:hover::before {
-      left: 100%;
-    }
-
     .info-block:hover {
-      transform: translateY(-5px);
-      background: rgba(255,255,255,0.12);
+      transform: translateY(-8px);
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.15);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
     }
 
     .info-title {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'DM Serif Display', serif;
       font-size: 1.8em;
       font-weight: 400;
       color: var(--rose-gold);
@@ -204,22 +191,23 @@
     }
 
     .countdown-item {
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 15px;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
       padding: 25px 15px;
       text-align: center;
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
     }
 
     .countdown-item:hover {
-      transform: translateY(-3px);
-      background: rgba(255,255,255,0.15);
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
     }
 
     .countdown-number {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'DM Serif Display', serif;
       font-size: 2.5em;
       font-weight: 400;
       color: var(--warm-white);
@@ -235,19 +223,21 @@
       margin-top: 8px;
     }
 
-    /* Кнопки */
+    /* Современные кнопки */
     .btn {
       display: inline-block;
-      background: linear-gradient(135deg, var(--burgundy), var(--light-burgundy));
+      background: linear-gradient(135deg, var(--burgundy), var(--dark-burgundy));
       color: var(--warm-white);
       text-decoration: none;
-      padding: 18px 35px;
-      border-radius: 50px;
-      font-weight: 400;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-weight: 500;
       margin: 20px 10px;
       transition: all 0.3s ease;
-      border: 1px solid rgba(255,255,255,0.2);
-      backdrop-filter: blur(10px);
+      border: none;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1em;
       position: relative;
       overflow: hidden;
     }
@@ -256,24 +246,32 @@
       content: "";
       position: absolute;
       top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s ease;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--light-burgundy), var(--burgundy));
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .btn:hover::before {
-      left: 100%;
+      opacity: 1;
     }
 
     .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(139,21,56,0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(114,47,55,0.4);
+    }
+
+    .btn span {
+      position: relative;
+      z-index: 1;
     }
 
     .btn i {
       margin-right: 8px;
+      position: relative;
+      z-index: 1;
     }
 
     /* Форма подтверждения */
@@ -282,16 +280,16 @@
     }
 
     .form-container {
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 25px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
       padding: 50px 40px;
       margin: 40px 0;
     }
 
     .form-title {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'DM Serif Display', serif;
       font-size: 2.2em;
       font-weight: 400;
       color: var(--rose-gold);
@@ -307,7 +305,7 @@
     .form-group label {
       display: block;
       margin-bottom: 10px;
-      font-weight: 400;
+      font-weight: 500;
       color: var(--cream);
       font-size: 1.1em;
     }
@@ -315,27 +313,28 @@
     .form-group input,
     .form-group select {
       width: 100%;
-      padding: 15px 20px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
       border-radius: 12px;
       color: var(--warm-white);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Nunito', sans-serif;
       font-size: 1em;
+      font-weight: 400;
       transition: all 0.3s ease;
       backdrop-filter: blur(10px);
     }
 
     .form-group input::placeholder {
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.5);
     }
 
     .form-group input:focus,
     .form-group select:focus {
       outline: none;
       border-color: var(--rose-gold);
-      background: rgba(255,255,255,0.15);
-      box-shadow: 0 0 20px rgba(232,180,184,0.3);
+      background: rgba(255,255,255,0.12);
+      box-shadow: 0 0 0 3px rgba(196,154,108,0.2);
     }
 
     .radio-group {
@@ -361,64 +360,12 @@
       cursor: pointer;
     }
 
-    /* Фотогалерея */
-    .photo-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin: 60px 0;
-    }
-
-    .photo-item {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-      transition: all 0.4s ease;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-    }
-
-    .photo-item:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-    }
-
-    .photo-item img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-
-    .photo-item:hover img {
-      transform: scale(1.1);
-    }
-
-    .photo-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.8));
-      color: white;
-      padding: 30px 20px 20px;
-      text-align: center;
-    }
-
-    .photo-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4em;
-      font-weight: 400;
-      margin-bottom: 5px;
-    }
-
     /* Декоративные элементы */
     .decoration {
       position: absolute;
       font-size: 2.5em;
       color: var(--rose-gold);
-      opacity: 0.3;
+      opacity: 0.2;
       animation: float 4s ease-in-out infinite;
       pointer-events: none;
     }
@@ -432,7 +379,7 @@
     .footer {
       margin-top: 80px;
       text-align: center;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'DM Serif Display', serif;
       font-size: 1.3em;
       color: var(--rose-gold);
       letter-spacing: 1px;
@@ -496,8 +443,6 @@
       
       .radio-group { flex-direction: column; gap: 15px; }
       
-      .photo-gallery { grid-template-columns: 1fr; gap: 20px; }
-      
       .decoration { font-size: 2em; }
     }
 
@@ -542,7 +487,7 @@
           <small>(напротив нижней канатной станции Медео–Чимбулак)</small>
         </div>
         <a class="btn" href="https://2gis.kz/almaty/geo/70000001098470261" target="_blank">
-          <i class="fas fa-map"></i> Открыть карту
+          <span><i class="fas fa-map"></i> Открыть карту</span>
         </a>
       </div>
     </section>
@@ -553,28 +498,6 @@
         <div class="info-title">⏰ До торжества осталось</div>
         <div class="countdown" id="countdown">
           <!-- Заполняется JavaScript -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Фотогалерея -->
-    <section class="photo-gallery">
-      <div class="photo-item">
-        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Фото пары">
-        <div class="photo-overlay">
-          <div class="photo-title">Наша история</div>
-        </div>
-      </div>
-      <div class="photo-item">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Фото пары">
-        <div class="photo-overlay">
-          <div class="photo-title">Вместе</div>
-        </div>
-      </div>
-      <div class="photo-item">
-        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Фото пары">
-        <div class="photo-overlay">
-          <div class="photo-title">Любовь</div>
         </div>
       </div>
     </section>
@@ -623,7 +546,7 @@
           </div>
 
           <button type="submit" class="btn">
-            <i class="fas fa-paper-plane"></i> Отправить ответ
+            <span><i class="fas fa-paper-plane"></i> Отправить ответ</span>
           </button>
         </form>
       </div>
@@ -660,7 +583,7 @@
       const distance = targetDate - now;
 
       if (distance < 0) {
-        countdown.innerHTML = '<div style="grid-column: 1/-1; text-align: center; font-size: 1.8em; color: var(--rose-gold); font-family: \'Cormorant Garamond\', serif;">🎉 Свадьба уже прошла! 🎉</div>';
+        countdown.innerHTML = '<div style="grid-column: 1/-1; text-align: center; font-size: 1.8em; color: var(--rose-gold); font-family: \'DM Serif Display\', serif;">🎉 Свадьба уже прошла! 🎉</div>';
         return;
       }
 
@@ -738,7 +661,7 @@
     }, observerOptions);
 
     // Наблюдаем за всеми блоками
-    document.querySelectorAll('.info-block, .photo-item, .form-container').forEach(el => {
+    document.querySelectorAll('.info-block, .form-container').forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(30px)';
       el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
