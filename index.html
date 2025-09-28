@@ -15,6 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -72,16 +73,6 @@
       overflow: hidden;
     }
 
-    .section.light {
-      background: rgba(242, 231, 201, 0.95);
-      color: var(--burgundy);
-    }
-
-    .section.dark {
-      background: rgba(94, 26, 36, 0.85);
-      color: #fff;
-    }
-
     /* Анимированные лепестки */
     .petals {
       position: absolute;
@@ -122,9 +113,9 @@
 
     /* Заголовки */
     .main-title {
-      font-family: 'Dancing Script', cursive;
-      font-size: 4rem;
-      font-weight: 600;
+      font-family: 'Allura', cursive;
+      font-size: 4.5rem;
+      font-weight: 400;
       text-align: center;
       margin-bottom: 2rem;
       color: var(--gold);
@@ -142,8 +133,8 @@
     }
 
     .names {
-      font-family: 'Great Vibes', cursive;
-      font-size: 5rem;
+      font-family: 'Allura', cursive;
+      font-size: 5.5rem;
       text-align: center;
       margin: 2rem 0;
       color: var(--gold);
@@ -152,6 +143,7 @@
     }
 
     .invitation-text {
+      font-family: 'Cormorant Garamond', serif;
       font-size: 1.4rem;
       text-align: center;
       font-style: italic;
@@ -165,11 +157,6 @@
       text-align: center;
       margin-bottom: 2rem;
       position: relative;
-      color: var(--burgundy);
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-
-    .section.dark .section-title {
       color: #fff;
       text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
@@ -194,18 +181,14 @@
       max-width: 600px;
       margin: 0 auto;
       text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-    }
-
-    .section.light .content {
-      color: var(--burgundy);
-      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      color: #fff;
     }
 
     /* Цветовые кружки */
     .color-palette {
       display: flex;
       justify-content: center;
-      gap: 30px;
+      gap: 40px;
       margin: 2rem 0;
       flex-wrap: wrap;
     }
@@ -218,15 +201,11 @@
     }
 
     .color-group-title {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 600;
-      color: var(--burgundy);
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-      background: rgba(255,255,255,0.9);
-      padding: 8px 16px;
-      border-radius: 20px;
-      border: 2px solid var(--gold);
-      box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+      color: var(--gold);
+      text-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+      margin-bottom: 10px;
     }
 
     .color-circles {
@@ -237,8 +216,8 @@
     }
 
     .color-circle {
-      width: 45px;
-      height: 45px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       border: 3px solid rgba(255,255,255,0.5);
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -253,16 +232,13 @@
     .color-circle::after {
       content: attr(data-color);
       position: absolute;
-      bottom: -30px;
+      bottom: -35px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 0.8rem;
-      color: var(--burgundy);
+      font-size: 0.9rem;
+      color: var(--gold);
       white-space: nowrap;
-      background: rgba(255,255,255,0.9);
-      padding: 2px 6px;
-      border-radius: 8px;
-      text-shadow: none;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
       font-weight: 500;
     }
 
@@ -283,12 +259,6 @@
       border-radius: 10px;
       border-left: 4px solid var(--gold);
       text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-    }
-
-    .section.light .timeline-item {
-      background: rgba(94, 26, 36, 0.1);
-      color: var(--burgundy);
-      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
 
     .timeline-time {
@@ -331,10 +301,6 @@
       margin: 2rem 0;
     }
 
-    .section.light .rsvp-form {
-      background: rgba(94, 26, 36, 0.1);
-    }
-
     .form-group {
       margin-bottom: 20px;
     }
@@ -343,11 +309,6 @@
       display: block;
       margin-bottom: 8px;
       font-weight: 500;
-      color: var(--burgundy);
-      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    }
-
-    .section.dark .form-group label {
       color: #fff;
       text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
@@ -363,19 +324,8 @@
       font-size: 1rem;
     }
 
-    .section.light .form-group input,
-    .section.light .form-group select {
-      background: rgba(255,255,255,0.8);
-      color: var(--burgundy);
-      border-color: rgba(94, 26, 36, 0.3);
-    }
-
     .form-group input::placeholder {
       color: rgba(255,255,255,0.7);
-    }
-
-    .section.light .form-group input::placeholder {
-      color: rgba(94, 26, 36, 0.7);
     }
 
     .btn {
@@ -407,11 +357,11 @@
       }
       
       .main-title {
-        font-size: 3rem;
+        font-size: 3.5rem;
       }
       
       .names {
-        font-size: 3.5rem;
+        font-size: 4rem;
       }
       
       .section-title {
@@ -419,7 +369,7 @@
       }
       
       .color-palette {
-        gap: 20px;
+        gap: 30px;
       }
       
       .color-circles {
@@ -427,8 +377,8 @@
       }
       
       .color-circle {
-        width: 40px;
-        height: 40px;
+        width: 45px;
+        height: 45px;
       }
     }
 
@@ -450,12 +400,6 @@
       text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
 
-    .section.light .countdown-item {
-      background: rgba(94, 26, 36, 0.1);
-      color: var(--burgundy);
-      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    }
-
     .countdown-number {
       font-size: 2rem;
       font-weight: 600;
@@ -468,6 +412,35 @@
       font-size: 0.9rem;
       margin-top: 5px;
     }
+
+    /* Декоративные элементы */
+    .decorative-line {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.3;
+    }
+
+    .decorative-line::before,
+    .decorative-line::after {
+      content: '❦';
+      position: absolute;
+      top: -10px;
+      color: var(--gold);
+      font-size: 1.5rem;
+    }
+
+    .decorative-line::before {
+      left: -20px;
+    }
+
+    .decorative-line::after {
+      right: -20px;
+    }
   </style>
 </head>
 
@@ -476,7 +449,7 @@
   
   <div class="container">
     <!-- Главная секция -->
-    <section class="section dark">
+    <section class="section">
       <div class="petals">
         <div class="petal" style="left: 10%; animation-delay: 0s;"></div>
         <div class="petal" style="left: 20%; animation-delay: 1s;"></div>
@@ -497,12 +470,14 @@
     </section>
 
     <!-- Дата и время -->
-    <section class="section light">
+    <section class="section">
       <h2 class="section-title">18 октября 2025</h2>
       <div class="content">
         <p>Начало церемонии в 14:00</p>
         <p>Ресторан «Gogra»</p>
-        <p>Алматы, Казахстан</p>
+        <p>ул. Керей-Жанибек Хандар, 554/3</p>
+        <p>(Напротив нижней канатной станции Медео-Чимбулак)</p>
+        <a href="https://2gis.kz/almaty/search/Ресторан%20Gogra" target="_blank" class="btn" style="margin-top: 15px;">Открыть карту</a>
       </div>
       
       <div class="countdown">
@@ -522,7 +497,7 @@
     </section>
 
     <!-- Дресс-код -->
-    <section class="section dark">
+    <section class="section">
       <h2 class="section-title">Дресс-код</h2>
       <div class="content">
         <p>Пожалуйста, выберите наряд в предложенной цветовой гамме — это сделает праздник ещё красивее</p>
@@ -553,7 +528,7 @@
     </section>
 
     <!-- Программа дня -->
-    <section class="section light">
+    <section class="section">
       <h2 class="section-title">Программа дня</h2>
       <div class="timeline">
         <div class="timeline-item">
@@ -580,7 +555,7 @@
     </section>
 
     <!-- Цитата -->
-    <section class="section dark">
+    <section class="section">
       <div class="quote">
         "Любовь — это не смотреть друг на друга, а смотреть вместе в одном направлении"
       </div>
@@ -588,7 +563,7 @@
     </section>
 
     <!-- Подтверждение присутствия -->
-    <section class="section light">
+    <section class="section">
       <h2 class="section-title">Подтверждение присутствия</h2>
       <div class="content">
         <p>Пожалуйста, подтвердите своё присутствие до 1 октября 2025 года</p>
@@ -629,7 +604,7 @@
     </section>
 
     <!-- Контакты -->
-    <section class="section dark">
+    <section class="section">
       <h2 class="section-title">Контакты</h2>
       <div class="content">
         <p>По всем вопросам обращайтесь к жениху:</p>
