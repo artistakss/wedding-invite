@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,367 +17,127 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <style>
-    :root{
-      --burgundy:#722F37;
-      --dark-burgundy:#5A1F26;
-      --warm:#FEFCFB;
-      --sand:#F3EDE6;
-      --accent:#C49A6C;
-      --muted:#E4DFD8;
-      --card-fill: rgba(255,255,255,.10);
-      --card-fill-hover: rgba(255,255,255,.14);
-      --tile-fill: rgba(255,255,255,.10);
+    :root {
+      --color-bg: #FFFFFF;
+      --color-main: #800000; /* темно-бордовый / винный */
+      --color-accent: #C04E31; /* терракотовый */
+      --color-light: #F2E7C9; /* кремово-бежевый */
+      --color-muted: #A3978F; /* серо-бежевый */
+      --color-dark: #1F3D29; /* глубокий тёмный зелёный */
+      --font-script: 'Great Vibes', cursive;
+      --font-serif: 'Cormorant Garamond', serif;
+      --font-body: 'Lora', serif;
     }
-    *{margin:0;padding:0;box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      color:var(--warm);
-      font-family:'Lora',serif;
-      font-weight:400;
-      line-height:1.6;
-      position:relative;
-      overflow-x:hidden;
-      background:linear-gradient(135deg,var(--burgundy) 0%,var(--dark-burgundy) 100%);
-      min-height:100vh;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-
-    /* Единый фон: фото + бордовый градиент */
-    .bg{
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background-image:
-        linear-gradient(135deg, rgba(114,47,55,0.92), rgba(90,31,38,0.92)),
-        url("https://artistakss.github.io/wedding-invite/mountains.jpg");
-      background-size: cover, cover;
-      background-position: center, center;
-      background-repeat: no-repeat, no-repeat;
-      background-attachment: fixed, fixed;
-      background-blend-mode: multiply;
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-light);
+      color: var(--color-dark);
+      line-height: 1.5;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
     }
-
-    /* рамка поверх фона */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:10px;
-      border:1px solid rgba(255,255,255,.15);
-      border-radius:6px;
-      pointer-events:none;
-      z-index:4;
+    .container {
+      max-width: 600px;
+      background: var(--color-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
-
-    /* контент поверх фона */
-    .container{max-width:900px;margin:0 auto;padding:48px 20px;position:relative;z-index:5}
-
-    /* HERO */
-    .hero{text-align:center;margin:20px 0 64px}
-    .hero .icon{font-size:28px;opacity:.85;margin-bottom:12px}
-    h1{
-      font-family:'Great Vibes',cursive;
-      font-size:64px;font-weight:400;letter-spacing:.5px;
-      text-shadow:0 2px 10px rgba(0,0,0,.25);
-      margin-bottom:6px;
+    .header {
+      background: var(--color-main);
+      color: var(--color-light);
+      text-align: center;
+      padding: 40px 20px;
+      font-family: var(--font-script);
+      font-size: 2.5rem;
     }
-    .names{
-      font-family:'Great Vibes',cursive;
-      font-size:44px;margin-bottom:6px;color:var(--sand);
+    .header small {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      margin-top: 10px;
     }
-    .date{
-      font-family:'Cormorant Garamond',serif;
-      font-size:18px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);
+    .section {
+      padding: 30px 20px;
+      border-bottom: 1px solid var(--color-muted);
     }
-    .divider{
-      display:flex;align-items:center;gap:10px;margin:26px auto 0;justify-content:center;opacity:.9
+    .section:last-child {
+      border-bottom: none;
     }
-    .divider::before,.divider::after{
-      content:"";flex:1;max-width:160px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35));
+    .section .title {
+    font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--color-main);
+      margin-bottom: 15px;
     }
-    .divider i{color:var(--accent);font-size:14px}
-
-    /* СЕКЦИИ */
-    .section{margin:40px 0}
-    .card{
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:16px;
-      padding:28px 24px;
-      background:var(--card-fill);
-      transition:.3s ease;
+    .details {
+      font-size: 1rem;
+      color: var(--color-dark);
+      margin-bottom: 10px;
     }
-    .card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.22);background:var(--card-fill-hover)}
-    .title{
-      font-family:'Cormorant Garamond',serif;
-      font-size:26px;font-weight:600;color:var(--sand);margin-bottom:12px;letter-spacing:.4px;
+    .details span {
+      font-weight: 500;
     }
-    .text{font-size:18px;color:var(--warm)}
-    .text i{color:var(--accent);margin-right:10px}
-
-    /* ДВЕ КОЛОНКИ ПАЛИТРЫ */
-    .palettes{
-      display:grid;gap:24px;margin-top:14px;
-      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
-      align-items:start;
+    .btn {
+      display: inline-block;
+      background: var(--color-accent);
+      color: var(--color-light);
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-family: var(--font-serif);
+      text-transform: uppercase;
+      margin-top: 20px;
+      transition: background 0.3s;
     }
-    .palette-title{
-      font-family:'Cormorant Garamond',serif;
-      font-weight:600;letter-spacing:.3px;color:var(--muted);margin-bottom:8px;font-size:18px
+    .btn:hover {
+      background: darken(var(--color-accent), 10%);
     }
-    .palette{
-      display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start
-    }
-    .color-dot{
-      position:relative;
-      width:34px;height:34px;border-radius:50%;
-      border:2px solid rgba(255,255,255,.38);
-      box-shadow:0 2px 8px rgba(0,0,0,.25);
-      transition:.25s ease;
-    }
-    .color-dot:hover{transform:scale(1.08);box-shadow:0 4px 12px rgba(0,0,0,.3)}
-    .color-name{
-      font-size:12px;color:var(--muted);margin-top:6px;text-align:center
-    }
-    .swatch{
-      display:flex;flex-direction:column;align-items:center;gap:0
-    }
-
-    /* COUNTDOWN */
-    .countdown{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));margin-top:16px}
-    .tile{
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:14px;
-      padding:18px 10px;text-align:center;background:var(--tile-fill);
-      transition:.3s ease;
-    }
-    .tile:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.22)}
-    .num{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;display:block;color:var(--warm)}
-    .lbl{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
-
-    /* BUTTON */
-    .btn{
-      display:inline-flex;align-items:center;gap:10px;
-      background:linear-gradient(135deg,#7a333b,#5d2329);
-      color:var(--warm);text-decoration:none;
-      padding:14px 20px;border-radius:12px;border:1px solid rgba(255,255,255,.12);
-      font-family:'Lora',serif;font-weight:500;font-size:16px;
-      transition:.25s ease;cursor:pointer
-    }
-    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.25)}
-    .btn i{color:var(--accent)}
-
-    /* RSVP */
-    .form{display:grid;gap:18px;margin-top:14px}
-    .field label{display:block;margin-bottom:8px;font-family:'Cormorant Garamond',serif;color:var(--sand);font-size:18px}
-    .input,.select{
-      width:100%;padding:14px 14px;border-radius:10px;
-      border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.10);
-      color:var(--warm);font-family:'Lora',serif;font-size:16px
-    }
-    .input:focus,.select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(196,154,108,.18)}
-    .radios{display:flex;gap:20px;flex-wrap:wrap;margin-top:6px}
-    .radio{display:flex;align-items:center;gap:8px}
-
-    /* FOOTER */
-    .footer{margin:48px 0 8px;text-align:center}
-    .footer small{color:var(--muted)}
-    .footer .love{display:inline-block;margin-top:10px;font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--accent)}
-
-    @media (max-width:600px){
-      h1{font-size:48px}
-      .names{font-size:36px}
-      .color-dot{width:30px;height:30px}
+    .footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+      color: var(--color-muted);
     }
   </style>
 </head>
 <body>
-  <!-- ЕДИНЫЙ ФОН -->
-  <div class="bg"></div>
-
   <div class="container">
-    <section class="hero">
-      <div class="icon">💍</div>
-      <h1>Мы женимся!</h1>
-      <div class="names">Павел & Адэлаида</div>
-      <div class="date">18 октября 2025</div>
-      <div class="divider"><i class="fa-solid fa-leaf"></i></div>
-    </section>
+    <div class="header">
+      Приглашение <br>
+      Павел & Адэлаида<br>
+      <small>18 октября 2025 в 14:00 · Ресторан «Gogra»</small>
+    </div>
 
-    <section class="section">
-      <div class="card">
-        <div class="title">Дата и время</div>
-        <p class="text"><i class="fa-regular fa-clock"></i><strong>18 октября 2025</strong>, начало в <strong>14:00</strong></p>
-      </div>
-    </section>
+    <div class="section">
+      <div class="title">Подтверждение участия</div>
+      <div class="details"><span>Имя:</span> Анна</div>
+      <div class="details"><span>Телефон:</span> +77076360605</div>
+      <div class="details"><span>Придёт:</span> Да, буду!</div>
+      <div class="details"><span>Количество гостей:</span> 1</div>
+    </div>
 
-    <section class="section">
-      <div class="card">
-        <div class="title">Место проведения</div>
-        <p class="text" style="margin-bottom:12px">
-          <i class="fa-solid fa-location-dot"></i><strong>Ресторан «Gogra»</strong><br>
-          ул. Керей-Жанибек Хандар, 554/3<br>
-          <small>(напротив нижней канатной станции Медео–Чимбулак)</small>
-        </p>
-        <a class="btn" href="https://2gis.kz/almaty/geo/70000001098470261" target="_blank">
-          <i class="fa-solid fa-map"></i> Открыть карту
-        </a>
-      </div>
-    </section>
+    <div class="section">
+      <div class="title">📍 Где и когда</div>
+      <div class="details"><span>Дата:</span> 18 октября 2025</div>
+      <div class="details"><span>Время:</span> 14:00</div>
+      <div class="details"><span>Место:</span> Ресторан «Gogra»</div>
+    </div>
 
-    <section class="section">
-      <div class="card">
-        <div class="title">До встречи осталось</div>
-        <div class="countdown" id="countdown"></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="card">
-        <div class="title">Дресс‑код</div>
-        <p class="text">
-          <i class="fa-solid fa-palette"></i>
-          Будем рады, если поддержите нашу палитру:
-        </p>
-
-        <div class="palettes">
-          <!-- Слева: основная гамма -->
-          <div>
-            <div class="palette-title">Основная гамма</div>
-            <div class="palette">
-              <div class="swatch">
-                <div class="color-dot" style="background:#5E1A24;"></div>
-                <div class="color-name">Бордовый<br>Темно‑бордовый</div>
-              </div>
-              <div class="swatch">
-                <div class="color-dot" style="background:#F2E7C9;"></div>
-                <div class="color-name">Светло‑бежевый<br>Кремовый</div>
-              </div>
-              <div class="swatch">
-                <div class="color-dot" style="background:#3F0D1F;"></div>
-                <div class="color-name">Темно‑сливовый<br>Винный</div>
-              </div>
-              <div class="swatch">
-                <div class="color-dot" style="background:#7D8B60;"></div>
-                <div class="color-name">Оливковый<br>Зелёный</div>
-              </div>
-              <div class="swatch">
-                <div class="color-dot" style="background:#1F3D29;"></div>
-                <div class="color-name">Глубокий<br>зелёный</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Справа: акцентная гамма -->
-          <div>
-            <div class="palette-title">Акцентная гамма</div>
-            <div class="palette">
-              <div class="swatch">
-                <div class="color-dot" style="background:#D2C4BC;"></div>
-                <div class="color-name">Светло‑серый<br>беж</div>
-              </div>
-              <div class="swatch">
-                <div class="color-dot" style="background:#E6D0A4;"></div>
-                <div class="color-name">Песочный<br>охристый</div>
-              </div>
-              <div class="swatch">
-                <div class="color-dot" style="background:#0D2F4E;"></div>
-                <div class="color-name">Темно‑синий<br>индиго</div>
-              </div>
-              <div class="swatch">
-                <div class="color-dot" style="background:#B5462B;"></div>
-                <div class="color-name">Терракота<br>глина</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="card">
-        <div class="title">Подтверждение присутствия</div>
-        <form id="rsvp" class="form">
-          <div class="field">
-            <label for="name">Ваше имя *</label>
-            <input id="name" name="name" class="input" required placeholder="Введите ваше имя">
-          </div>
-          <div class="field">
-            <label for="phone">Телефон *</label>
-            <input id="phone" name="phone" class="input" required placeholder="+7 (___) ___‑__‑__">
-          </div>
-          <div class="field">
-            <label>Придёте? *</label>
-            <div class="radios">
-              <label class="radio"><input type="radio" name="attendance" value="yes" required> Да, буду</label>
-              <label class="radio"><input type="radio" name="attendance" value="no" required> К сожалению, не смогу</label>
-            </div>
-          </div>
-          <div class="field">
-            <label for="guests">Сколько гостей (включая вас)</label>
-            <select id="guests" name="guests" class="select">
-              <option value="1">1 человек</option>
-              <option value="2">2 человека</option>
-              <option value="3">3 человека</option>
-              <option value="4">4 человека</option>
-              <option value="5+">5 и более</option>
-            </select>
-          </div>
-          <button type="submit" class="btn"><i class="fa-regular fa-paper-plane"></i> Отправить в WhatsApp</button>
-        </form>
-      </div>
-    </section>
+    <div class="section" style="text-align: center;">
+      <a href="https://wa.me/ТВОЙ_НОМЕР?text=💍%20Подтверждение... " class="btn">Отправить в WhatsApp</a>
+    </div>
 
     <div class="footer">
-      <small>С теплом и любовью</small><br>
-      <span class="love"><i class="fa-solid fa-heart"></i> Павел и Адэлаида</span>
+      С теплом и любовью,<br>
+      Павел и Адэлаида ❤️
     </div>
   </div>
-
-  <script>
-    // Countdown
-    const targetDate = new Date("2025-10-18T14:00:00").getTime();
-    const el = document.getElementById("countdown");
-    function tick(){
-      const now = Date.now(), d = targetDate - now;
-      if(d <= 0){
-        el.innerHTML = '<div class="tile" style="grid-column:1/-1"><span class="num">Сегодня</span><span class="lbl">встречаемся!</span></div>';
-        return;
-      }
-      const days = Math.floor(d/86400000);
-      const hours = Math.floor((d%86400000)/3600000);
-      const mins = Math.floor((d%3600000)/60000);
-      const secs = Math.floor((d%60000)/1000);
-      el.innerHTML = `
-        <div class="tile"><span class="num">${days}</span><span class="lbl">дней</span></div>
-        <div class="tile"><span class="num">${hours}</span><span class="lbl">часов</span></div>
-        <div class="tile"><span class="num">${mins}</span><span class="lbl">минут</span></div>
-        <div class="tile"><span class="num">${secs}</span><span class="lbl">секунд</span></div>`;
-    }
-    tick(); setInterval(tick,1000);
-
-    // WhatsApp отправка (Казахстан, номер без +)
-    const GROOM_PHONE = "77079956914";
-
-    document.getElementById('rsvp').addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(e.target).entries());
-
-      const message = `💍 Подтверждение на свадьбу Павла и Адэлаиды
-
-👤 Имя: ${data.name}
-📱 Телефон: ${data.phone}
-✅ Придёт: ${data.attendance === 'yes' ? 'Да, буду!' : 'К сожалению, не смогу'}
-👥 Количество гостей: ${data.guests}
-
-📅 Дата: 18 октября 2025 в 14:00
-📍 Место: Ресторан «Gogra»
-
-Спасибо за ответ! ❤️`;
-
-      const whatsappUrl = `https://wa.me/${GROOM_PHONE}?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
-      alert('Откроется WhatsApp с готовым сообщением. Нажмите «Отправить».');
-      e.target.reset();
-    });
-  </script>
 </body>
 </html>
