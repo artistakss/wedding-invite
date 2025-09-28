@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Свадебное приглашение</title>
-  <!-- Подключаем Google Fonts -->
+  <!-- Шрифты -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Allura&display=swap" rel="stylesheet">
 
   <style>
@@ -12,14 +12,14 @@
       margin: 0;
       padding: 0;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
+      font-size: 1.15rem; /* увеличено */
       line-height: 1.9;
       color: #fff;
       background: linear-gradient(135deg, #1f1f1f, #3a3a3a);
       text-align: center;
     }
 
-    /* Имена */
+    /* --- Имена --- */
     .names {
       font-family: 'Allura', cursive;
       font-size: 5.5rem;
@@ -30,10 +30,9 @@
       text-shadow: 0 0 25px rgba(255, 192, 203, 0.4);
       animation: glow 2s ease-in-out infinite alternate;
     }
-
     @keyframes glow {
-      from { text-shadow: 0 0 10px rgba(255, 182, 193, 0.4); }
-      to   { text-shadow: 0 0 25px rgba(255, 215, 0, 0.6); }
+      from { text-shadow: 0 0 10px rgba(255,182,193,0.4); }
+      to   { text-shadow: 0 0 25px rgba(255,215,0,0.6); }
     }
 
     .section {
@@ -45,10 +44,9 @@
     .section-title {
       font-size: 2rem;
       margin-bottom: 1.5rem;
-      letter-spacing: 1px;
     }
 
-    /* Отдельные блоки */
+    /* --- Блоки даты, карты и отсчёта --- */
     .event-block {
       margin: 2rem 0;
       padding: 25px;
@@ -56,7 +54,7 @@
       border-radius: 15px;
     }
 
-    /* Кнопка */
+    /* --- Кнопка --- */
     .btn {
       display: inline-block;
       margin-top: 15px;
@@ -68,30 +66,26 @@
       text-decoration: none;
       transition: 0.3s;
     }
-    .btn:hover {
-      opacity: 0.85;
-    }
+    .btn:hover { opacity: 0.85; }
 
-    /* Обратный отсчёт */
+    /* --- Обратный отсчёт --- */
     .countdown {
       display: flex;
       justify-content: center;
       gap: 30px;
       margin-top: 1rem;
     }
-    .countdown-item {
-      text-align: center;
-    }
+    .countdown-item { text-align: center; }
     .countdown-number {
       font-size: 2rem;
       font-weight: bold;
     }
 
-    /* Палитра цветов */
+    /* --- Палитра --- */
     .color-palette {
       display: flex;
       flex-direction: column;
-      gap: 50px;
+      gap: 50px; /* отступы увеличены */
       align-items: center;
     }
     .color-set {
@@ -105,10 +99,8 @@
       border: 2px solid #fff;
     }
 
-    /* Форма */
-    .form-group {
-      margin: 1rem 0;
-    }
+    /* --- Форма --- */
+    .form-group { margin: 1rem 0; }
     .form-group input,
     .form-group select {
       width: 100%;
@@ -116,7 +108,7 @@
       padding: 12px;
       border-radius: 8px;
       border: none;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: inherit; /* теперь тот же шрифт */
       font-size: 1.05rem;
     }
     .form-group button {
@@ -130,9 +122,7 @@
       cursor: pointer;
       transition: 0.3s;
     }
-    .form-group button:hover {
-      opacity: 0.85;
-    }
+    .form-group button:hover { opacity: 0.85; }
   </style>
 </head>
 <body>
@@ -203,15 +193,12 @@
   <script>
     // Обратный отсчёт
     const weddingDate = new Date("Oct 18, 2025 14:00:00").getTime();
-
     setInterval(() => {
       const now = new Date().getTime();
       const distance = weddingDate - now;
-
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
       document.getElementById("days").innerText = days;
       document.getElementById("hours").innerText = hours;
       document.getElementById("minutes").innerText = minutes;
