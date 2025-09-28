@@ -36,27 +36,26 @@
       line-height:1.6;
       position:relative;
       overflow-x:hidden;
-      /* БОРДОВЫЙ ГРАДИЕНТ КАК ОСНОВА */
       background:linear-gradient(135deg,var(--burgundy) 0%,var(--dark-burgundy) 100%);
       min-height:100vh;
     }
 
-    /* ГОРЫ С ДЫМКОЙ: фото поверх градиента */
-    body::after{
-      content:"";
-      position:fixed;
-      inset:0;
-      background-image:url("https://artistakss.github.io/wedding-invite/mountains.jpg");
-      background-size:cover;
-      background-position:center;
-      background-repeat:no-repeat;
-      opacity:.18;                 /* одинаковая прозрачность везде */
-      filter:brightness(.7) contrast(.9) blur(1.2px);
-      pointer-events:none;
-      z-index:0;
+    /* Единый фон: фото + бордовый градиент */
+    .bg{
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(135deg, rgba(114,47,55,0.92), rgba(90,31,38,0.92)),
+        url("https://artistakss.github.io/wedding-invite/mountains.jpg");
+      background-size: cover, cover;
+      background-position: center, center;
+      background-repeat: no-repeat, no-repeat;
+      background-attachment: fixed, fixed;
+      background-blend-mode: multiply;
     }
 
-    /* рамка */
+    /* рамка поверх фона */
     body::before{
       content:"";
       position:fixed;
@@ -67,6 +66,7 @@
       z-index:4;
     }
 
+    /* контент поверх фона */
     .container{max-width:900px;margin:0 auto;padding:48px 20px;position:relative;z-index:5}
 
     /* HERO */
@@ -188,6 +188,9 @@
   </style>
 </head>
 <body>
+  <!-- ЕДИНЫЙ ФОН -->
+  <div class="bg"></div>
+
   <div class="container">
     <section class="hero">
       <div class="icon">💍</div>
@@ -350,14 +353,13 @@
     }
     tick(); setInterval(tick,1000);
 
-    // WhatsApp отправка - ВАШ НОМЕР
-    const GROOM_PHONE = "77079956914"; // ваш номер без + и пробелов
+    // WhatsApp отправка (Казахстан, номер без +)
+    const GROOM_PHONE = "77079956914";
 
     document.getElementById('rsvp').addEventListener('submit', (e)=>{
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.target).entries());
-      
-      // Формируем сообщение
+
       const message = `💍 Подтверждение на свадьбу Павла и Адэлаиды
 
 👤 Имя: ${data.name}
@@ -370,14 +372,9 @@
 
 Спасибо за ответ! ❤️`;
 
-      // Открываем WhatsApp с готовым сообщением
       const whatsappUrl = `https://wa.me/${GROOM_PHONE}?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
-      
-      // Показываем уведомление
-      alert('Откроется WhatsApp с готовым сообщением. Просто нажмите "Отправить"!');
-      
-      // Очищаем форму
+      alert('Откроется WhatsApp с готовым сообщением. Нажмите «Отправить».');
       e.target.reset();
     });
   </script>
