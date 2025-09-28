@@ -23,6 +23,9 @@
       --sand:#F3EDE6;
       --accent:#C49A6C;
       --muted:#E4DFD8;
+      --card-fill: rgba(255,255,255,.10);
+      --card-fill-hover: rgba(255,255,255,.14);
+      --tile-fill: rgba(255,255,255,.10);
     }
     *{margin:0;padding:0;box-sizing:border-box}
     html,body{height:100%}
@@ -36,21 +39,22 @@
       background:linear-gradient(135deg,var(--burgundy) 0%,var(--dark-burgundy) 100%);
       min-height:100vh;
     }
-    /* ДЫМКА: убираем mix-blend-mode чтобы избежать проблем с прозрачностью блоков */
-    body::after{
-      content:"";
-      position:fixed;
-      inset:0;
-      background-image:url("https://artistakss.github.io/wedding-invite/mountains.jpg");
-      background-size:cover;
-      background-position:center;
-      background-repeat:no-repeat;
-      opacity:.15;                 /* чуть меньше для равномерности */
-      filter:brightness(.6) contrast(.8) blur(1.5px);
-      pointer-events:none;
-      z-index:0;
+
+    /* ЕДИНЫЙ ФОНОВЫЙ СЛОЙ: фото + вуаль под контентом.
+       Так прозрачность выглядит одинаково везде. */
+    .bg-photo{
+      position:fixed; inset:0; z-index:0;
+      background:url("https://artistakss.github.io/wedding-invite/mountains.jpg") center/cover no-repeat;
     }
-    /* тонкая рамка */
+    .bg-veil{
+      position:fixed; inset:0; z-index:1; pointer-events:none;
+      /* единая «дымка» для всей страницы */
+      background: rgba(33, 8, 12, 0.55);
+      /* мягкое выравнивание яркости картинки */
+      backdrop-filter: blur(1.2px) brightness(.9) contrast(.95);
+    }
+
+    /* рамка */
     body::before{
       content:"";
       position:fixed;
@@ -58,10 +62,10 @@
       border:1px solid rgba(255,255,255,.15);
       border-radius:6px;
       pointer-events:none;
-      z-index:3;
+      z-index:4;
     }
 
-    .container{max-width:900px;margin:0 auto;padding:48px 20px;position:relative;z-index:2}
+    .container{max-width:900px;margin:0 auto;padding:48px 20px;position:relative;z-index:5}
 
     /* HERO */
     .hero{text-align:center;margin:20px 0 64px}
@@ -88,16 +92,16 @@
     }
     .divider i{color:var(--accent);font-size:14px}
 
-    /* СЕКЦИИ - равномерная прозрачность */
+    /* СЕКЦИИ */
     .section{margin:40px 0}
     .card{
-      border:1px solid rgba(255,255,255,.15);
+      border:1px solid rgba(255,255,255,.12);
       border-radius:16px;
       padding:28px 24px;
-      background:rgba(255,255,255,.08);  /* увеличил для равномерности */
+      background:var(--card-fill);
       transition:.3s ease;
     }
-    .card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.12)}
+    .card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.22);background:var(--card-fill-hover)}
     .title{
       font-family:'Cormorant Garamond',serif;
       font-size:26px;font-weight:600;color:var(--sand);margin-bottom:12px;letter-spacing:.4px;
@@ -105,35 +109,43 @@
     .text{font-size:18px;color:var(--warm)}
     .text i{color:var(--accent);margin-right:10px}
 
-    /* ЦВЕТОВАЯ ПАЛИТРА - кружки */
+    /* ДВЕ КОЛОНКИ ПАЛИТРЫ */
+    .palettes{
+      display:grid;gap:24px;margin-top:14px;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      align-items:start;
+    }
+    .palette-title{
+      font-family:'Cormorant Garamond',serif;
+      font-weight:600;letter-spacing:.3px;color:var(--muted);margin-bottom:8px;font-size:18px
+    }
     .palette{
-      display:flex;flex-wrap:wrap;gap:12px;margin-top:16px;justify-content:center;
+      display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start
     }
     .color-dot{
-      width:32px;height:32px;border-radius:50%;
-      border:2px solid rgba(255,255,255,.3);
-      box-shadow:0 2px 8px rgba(0,0,0,.2);
-      transition:.3s ease;
+      position:relative;
+      width:34px;height:34px;border-radius:50%;
+      border:2px solid rgba(255,255,255,.38);
+      box-shadow:0 2px 8px rgba(0,0,0,.25);
+      transition:.25s ease;
     }
-    .color-dot:hover{transform:scale(1.1);box-shadow:0 4px 12px rgba(0,0,0,.3)}
-    .color-dot::after{
-      content:attr(data-color);
-      position:absolute;
-      bottom:-24px;left:50%;transform:translateX(-50%);
-      font-size:10px;color:var(--muted);white-space:nowrap;
-      opacity:0;transition:.3s ease;
+    .color-dot:hover{transform:scale(1.08);box-shadow:0 4px 12px rgba(0,0,0,.3)}
+    .color-name{
+      font-size:12px;color:var(--muted);margin-top:6px;text-align:center
     }
-    .color-dot:hover::after{opacity:1}
+    .swatch{
+      display:flex;flex-direction:column;align-items:center;gap:0
+    }
 
     /* COUNTDOWN */
     .countdown{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));margin-top:16px}
     .tile{
-      border:1px solid rgba(255,255,255,.15);
+      border:1px solid rgba(255,255,255,.12);
       border-radius:14px;
-      padding:18px 10px;text-align:center;background:rgba(255,255,255,.08);  /* увеличил для равномерности */
+      padding:18px 10px;text-align:center;background:var(--tile-fill);
       transition:.3s ease;
     }
-    .tile:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.25)}
+    .tile:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.22)}
     .num{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;display:block;color:var(--warm)}
     .lbl{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
 
@@ -154,7 +166,7 @@
     .field label{display:block;margin-bottom:8px;font-family:'Cormorant Garamond',serif;color:var(--sand);font-size:18px}
     .input,.select{
       width:100%;padding:14px 14px;border-radius:10px;
-      border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);  /* увеличил для равномерности */
+      border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.10);
       color:var(--warm);font-family:'Lora',serif;font-size:16px
     }
     .input:focus,.select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(196,154,108,.18)}
@@ -169,12 +181,15 @@
     @media (max-width:600px){
       h1{font-size:48px}
       .names{font-size:36px}
-      .palette{gap:8px}
-      .color-dot{width:28px;height:28px}
+      .color-dot{width:30px;height:30px}
     }
   </style>
 </head>
 <body>
+  <!-- Единые фоновые слои -->
+  <div class="bg-photo"></div>
+  <div class="bg-veil"></div>
+
   <div class="container">
     <section class="hero">
       <div class="icon">💍</div>
@@ -219,18 +234,59 @@
           <i class="fa-solid fa-palette"></i>
           Будем рады, если поддержите нашу палитру:
         </p>
-        
-        <!-- Цветовые кружки -->
-        <div class="palette">
-          <div class="color-dot" data-color="Бургунди" style="background:#722F37;"></div>
-          <div class="color-dot" data-color="Тёмно-бордовый" style="background:#5A1F26;"></div>
-          <div class="color-dot" data-color="Песочный" style="background:#F3EDE6;"></div>
-          <div class="color-dot" data-color="Шоколадный" style="background:#8B4513;"></div>
-          <div class="color-dot" data-color="Рыже-оранжевый" style="background:#FF8C42;"></div>
-          <div class="color-dot" data-color="Лазурно-синий" style="background:#1E3A8A;"></div>
-          <div class="color-dot" data-color="Бежевый" style="background:#F5F5DC;"></div>
-          <div class="color-dot" data-color="Светло-серый" style="background:#F8F9FA;"></div>
+
+        <div class="palettes">
+          <!-- Слева: основная гамма -->
+          <div>
+            <div class="palette-title">Основная гамма</div>
+            <div class="palette">
+              <div class="swatch">
+                <div class="color-dot" style="background:#5E1A24;"></div>
+                <div class="color-name">Бордовый<br>Темно‑бордовый</div>
+              </div>
+              <div class="swatch">
+                <div class="color-dot" style="background:#F2E7C9;"></div>
+                <div class="color-name">Светло‑бежевый<br>Кремовый</div>
+              </div>
+              <div class="swatch">
+                <div class="color-dot" style="background:#3F0D1F;"></div>
+                <div class="color-name">Темно‑сливовый<br>Винный</div>
+              </div>
+              <div class="swatch">
+                <div class="color-dot" style="background:#7D8B60;"></div>
+                <div class="color-name">Оливковый<br>Зелёный</div>
+              </div>
+              <div class="swatch">
+                <div class="color-dot" style="background:#1F3D29;"></div>
+                <div class="color-name">Глубокий<br>зелёный</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Справа: акцентная гамма -->
+          <div>
+            <div class="palette-title">Акцентная гамма</div>
+            <div class="palette">
+              <div class="swatch">
+                <div class="color-dot" style="background:#D2C4BC;"></div>
+                <div class="color-name">Светло‑серый<br>беж</div>
+              </div>
+              <div class="swatch">
+                <div class="color-dot" style="background:#E6D0A4;"></div>
+                <div class="color-name">Песочный<br>охристый</div>
+              </div>
+              <div class="swatch">
+                <div class="color-dot" style="background:#0D2F4E;"></div>
+                <div class="color-name">Темно‑синий<br>индиго</div>
+              </div>
+              <div class="swatch">
+                <div class="color-dot" style="background:#B5462B;"></div>
+                <div class="color-name">Терракота<br>глина</div>
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
     </section>
 
@@ -296,13 +352,37 @@
     }
     tick(); setInterval(tick,1000);
 
-    // RSVP
-    document.getElementById('rsvp').addEventListener('submit', e=>{
+    // RSVP отправка (замените на ваш endpoint, т.к. GitHub Pages не принимает POST сам по себе)
+    const RSVP_ENDPOINT = "https://formspree.io/f/your_form_id"; // <-- вставьте свой URL
+
+    document.getElementById('rsvp').addEventListener('submit', async (e)=>{
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.target).entries());
-      console.log('RSVP:', data);
-      alert('Спасибо! Мы получили ваше подтверждение.');
-      e.target.reset();
+
+      try{
+        if(!RSVP_ENDPOINT || RSVP_ENDPOINT.includes("your_form_id")){
+          console.log('RSVP (локально):', data);
+          alert('Спасибо! Мы получили ваше подтверждение (демо). Подключите реальный endpoint для отправки.');
+          e.target.reset();
+          return;
+        }
+
+        const res = await fetch(RSVP_ENDPOINT, {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(data)
+        });
+
+        if(res.ok){
+          alert('Спасибо! Мы получили ваше подтверждение.');
+          e.target.reset();
+        }else{
+          alert('Не удалось отправить. Попробуйте позже.');
+        }
+      }catch(err){
+        console.error(err);
+        alert('Ошибка соединения. Попробуйте позже.');
+      }
     });
   </script>
 </body>
