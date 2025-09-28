@@ -36,22 +36,24 @@
       line-height:1.6;
       position:relative;
       overflow-x:hidden;
+      /* БОРДОВЫЙ ГРАДИЕНТ КАК ОСНОВА */
       background:linear-gradient(135deg,var(--burgundy) 0%,var(--dark-burgundy) 100%);
       min-height:100vh;
     }
 
-    /* ЕДИНЫЙ ФОНОВЫЙ СЛОЙ: фото + вуаль под контентом.
-       Так прозрачность выглядит одинаково везде. */
-    .bg-photo{
-      position:fixed; inset:0; z-index:0;
-      background:url("https://artistakss.github.io/wedding-invite/mountains.jpg") center/cover no-repeat;
-    }
-    .bg-veil{
-      position:fixed; inset:0; z-index:1; pointer-events:none;
-      /* единая «дымка» для всей страницы */
-      background: rgba(33, 8, 12, 0.55);
-      /* мягкое выравнивание яркости картинки */
-      backdrop-filter: blur(1.2px) brightness(.9) contrast(.95);
+    /* ГОРЫ С ДЫМКОЙ: фото поверх градиента */
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:url("https://artistakss.github.io/wedding-invite/mountains.jpg");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      opacity:.18;                 /* одинаковая прозрачность везде */
+      filter:brightness(.7) contrast(.9) blur(1.2px);
+      pointer-events:none;
+      z-index:0;
     }
 
     /* рамка */
@@ -186,10 +188,6 @@
   </style>
 </head>
 <body>
-  <!-- Единые фоновые слои -->
-  <div class="bg-photo"></div>
-  <div class="bg-veil"></div>
-
   <div class="container">
     <section class="hero">
       <div class="icon">💍</div>
@@ -319,7 +317,7 @@
               <option value="5+">5 и более</option>
             </select>
           </div>
-          <button type="submit" class="btn"><i class="fa-regular fa-paper-plane"></i> Отправить</button>
+          <button type="submit" class="btn"><i class="fa-regular fa-paper-plane"></i> Отправить в WhatsApp</button>
         </form>
       </div>
     </section>
@@ -352,37 +350,35 @@
     }
     tick(); setInterval(tick,1000);
 
-    // RSVP отправка (замените на ваш endpoint, т.к. GitHub Pages не принимает POST сам по себе)
-    const RSVP_ENDPOINT = "https://formspree.io/f/your_form_id"; // <-- вставьте свой URL
+    // WhatsApp отправка - ВАШ НОМЕР
+    const GROOM_PHONE = "77079956914"; // ваш номер без + и пробелов
 
-    document.getElementById('rsvp').addEventListener('submit', async (e)=>{
+    document.getElementById('rsvp').addEventListener('submit', (e)=>{
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.target).entries());
+      
+      // Формируем сообщение
+      const message = `💍 Подтверждение на свадьбу Павла и Адэлаиды
 
-      try{
-        if(!RSVP_ENDPOINT || RSVP_ENDPOINT.includes("your_form_id")){
-          console.log('RSVP (локально):', data);
-          alert('Спасибо! Мы получили ваше подтверждение (демо). Подключите реальный endpoint для отправки.');
-          e.target.reset();
-          return;
-        }
+👤 Имя: ${data.name}
+📱 Телефон: ${data.phone}
+✅ Придёт: ${data.attendance === 'yes' ? 'Да, буду!' : 'К сожалению, не смогу'}
+👥 Количество гостей: ${data.guests}
 
-        const res = await fetch(RSVP_ENDPOINT, {
-          method: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify(data)
-        });
+📅 Дата: 18 октября 2025 в 14:00
+📍 Место: Ресторан «Gogra»
 
-        if(res.ok){
-          alert('Спасибо! Мы получили ваше подтверждение.');
-          e.target.reset();
-        }else{
-          alert('Не удалось отправить. Попробуйте позже.');
-        }
-      }catch(err){
-        console.error(err);
-        alert('Ошибка соединения. Попробуйте позже.');
-      }
+Спасибо за ответ! ❤️`;
+
+      // Открываем WhatsApp с готовым сообщением
+      const whatsappUrl = `https://wa.me/${GROOM_PHONE}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+      
+      // Показываем уведомление
+      alert('Откроется WhatsApp с готовым сообщением. Просто нажмите "Отправить"!');
+      
+      // Очищаем форму
+      e.target.reset();
     });
   </script>
 </body>
