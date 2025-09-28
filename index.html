@@ -49,7 +49,7 @@
       inset: 0;
       z-index: 0;
       background-image:
-        linear-gradient(135deg, rgba(80,20,30,0.95), rgba(60,15,25,0.95)),
+        linear-gradient(135deg, rgba(94,26,36,0.88), rgba(63,13,31,0.88)),
         url("https://artistakss.github.io/wedding-invite/mountains.jpg");
       background-size: cover, cover;
       background-position: center, center;
@@ -127,8 +127,18 @@
       font-weight: 600;
       text-align: center;
       margin-bottom: 2rem;
-      text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
       color: var(--gold);
+      text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+      }
+      to {
+        text-shadow: 0 0 30px rgba(212, 175, 55, 0.8), 0 0 40px rgba(212, 175, 55, 0.6);
+      }
     }
 
     .names {
@@ -136,8 +146,9 @@
       font-size: 5rem;
       text-align: center;
       margin: 2rem 0;
-      text-shadow: 0 0 30px rgba(212, 175, 55, 0.8);
       color: var(--gold);
+      text-shadow: 0 0 30px rgba(212, 175, 55, 0.8);
+      animation: glow 2s ease-in-out infinite alternate;
     }
 
     .invitation-text {
@@ -146,6 +157,7 @@
       font-style: italic;
       margin: 2rem 0;
       color: var(--light-beige);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
 
     .section-title {
@@ -153,6 +165,13 @@
       text-align: center;
       margin-bottom: 2rem;
       position: relative;
+      color: var(--burgundy);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .section.dark .section-title {
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
 
     .section-title::after {
@@ -174,13 +193,19 @@
       line-height: 1.8;
       max-width: 600px;
       margin: 0 auto;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .section.light .content {
+      color: var(--burgundy);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
 
     /* Цветовые кружки */
     .color-palette {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 30px;
       margin: 2rem 0;
       flex-wrap: wrap;
     }
@@ -189,29 +214,34 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 15px;
+      gap: 20px;
     }
 
     .color-group-title {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 600;
-      color: #000;
-      text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+      color: var(--burgundy);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      background: rgba(255,255,255,0.9);
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
     }
 
     .color-circles {
       display: flex;
-      gap: 12px;
+      gap: 15px;
       flex-wrap: wrap;
       justify-content: center;
     }
 
     .color-circle {
-      width: 40px;
-      height: 40px;
+      width: 45px;
+      height: 45px;
       border-radius: 50%;
-      border: 3px solid rgba(255,255,255,0.3);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      border: 3px solid rgba(255,255,255,0.5);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       position: relative;
       transition: transform 0.3s ease;
     }
@@ -223,13 +253,17 @@
     .color-circle::after {
       content: attr(data-color);
       position: absolute;
-      bottom: -25px;
+      bottom: -30px;
       left: 50%;
       transform: translateX(-50%);
       font-size: 0.8rem;
-      color: #000;
+      color: var(--burgundy);
       white-space: nowrap;
-      text-shadow: 0 0 5px rgba(212, 175, 55, 0.4);
+      background: rgba(255,255,255,0.9);
+      padding: 2px 6px;
+      border-radius: 8px;
+      text-shadow: none;
+      font-weight: 500;
     }
 
     /* Таймлайн */
@@ -248,12 +282,20 @@
       background: rgba(255,255,255,0.1);
       border-radius: 10px;
       border-left: 4px solid var(--gold);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .section.light .timeline-item {
+      background: rgba(94, 26, 36, 0.1);
+      color: var(--burgundy);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
 
     .timeline-time {
       font-weight: 600;
       color: var(--gold);
       min-width: 80px;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
     }
 
     .timeline-text {
@@ -270,6 +312,7 @@
       border-left: 4px solid var(--gold);
       background: rgba(255,255,255,0.05);
       border-radius: 10px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
 
     .quote-author {
@@ -277,6 +320,7 @@
       margin-top: 10px;
       font-size: 1rem;
       color: var(--gold);
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
     }
 
     /* Форма RSVP */
@@ -287,6 +331,10 @@
       margin: 2rem 0;
     }
 
+    .section.light .rsvp-form {
+      background: rgba(94, 26, 36, 0.1);
+    }
+
     .form-group {
       margin-bottom: 20px;
     }
@@ -295,6 +343,13 @@
       display: block;
       margin-bottom: 8px;
       font-weight: 500;
+      color: var(--burgundy);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .section.dark .form-group label {
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
 
     .form-group input,
@@ -308,8 +363,19 @@
       font-size: 1rem;
     }
 
+    .section.light .form-group input,
+    .section.light .form-group select {
+      background: rgba(255,255,255,0.8);
+      color: var(--burgundy);
+      border-color: rgba(94, 26, 36, 0.3);
+    }
+
     .form-group input::placeholder {
       color: rgba(255,255,255,0.7);
+    }
+
+    .section.light .form-group input::placeholder {
+      color: rgba(94, 26, 36, 0.7);
     }
 
     .btn {
@@ -325,12 +391,13 @@
       text-decoration: none;
       display: inline-block;
       text-align: center;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
     }
 
     .btn:hover {
       background: #B8941F;
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
     }
 
     /* Адаптивность */
@@ -351,13 +418,17 @@
         font-size: 2rem;
       }
       
+      .color-palette {
+        gap: 20px;
+      }
+      
       .color-circles {
-        gap: 8px;
+        gap: 10px;
       }
       
       .color-circle {
-        width: 35px;
-        height: 35px;
+        width: 40px;
+        height: 40px;
       }
     }
 
@@ -376,6 +447,13 @@
       padding: 15px;
       border-radius: 10px;
       min-width: 80px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .section.light .countdown-item {
+      background: rgba(94, 26, 36, 0.1);
+      color: var(--burgundy);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
 
     .countdown-number {
@@ -383,6 +461,7 @@
       font-weight: 600;
       color: var(--gold);
       display: block;
+      text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
     }
 
     .countdown-label {
