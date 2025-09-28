@@ -36,7 +36,7 @@
       background:linear-gradient(135deg,var(--burgundy) 0%,var(--dark-burgundy) 100%);
       min-height:100vh;
     }
-    /* ДЫМКА С ФОТО: абсолютная ссылка на файл в вашем GitHub Pages */
+    /* ДЫМКА: убираем mix-blend-mode чтобы избежать проблем с прозрачностью блоков */
     body::after{
       content:"";
       position:fixed;
@@ -45,9 +45,8 @@
       background-size:cover;
       background-position:center;
       background-repeat:no-repeat;
-      opacity:.2;                  /* 0.18–0.25 для сильнее/слабее */
-      filter:brightness(.7) contrast(.9) blur(1.3px);
-      mix-blend-mode:screen;       /* мягкое подсвечивание сквозь бордовый фон */
+      opacity:.15;                 /* чуть меньше для равномерности */
+      filter:brightness(.6) contrast(.8) blur(1.5px);
       pointer-events:none;
       z-index:0;
     }
@@ -89,16 +88,16 @@
     }
     .divider i{color:var(--accent);font-size:14px}
 
-    /* СЕКЦИИ */
+    /* СЕКЦИИ - равномерная прозрачность */
     .section{margin:40px 0}
     .card{
       border:1px solid rgba(255,255,255,.15);
       border-radius:16px;
       padding:28px 24px;
-      background:rgba(255,255,255,.03);
+      background:rgba(255,255,255,.08);  /* увеличил для равномерности */
       transition:.3s ease;
     }
-    .card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.05)}
+    .card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.12)}
     .title{
       font-family:'Cormorant Garamond',serif;
       font-size:26px;font-weight:600;color:var(--sand);margin-bottom:12px;letter-spacing:.4px;
@@ -106,12 +105,32 @@
     .text{font-size:18px;color:var(--warm)}
     .text i{color:var(--accent);margin-right:10px}
 
+    /* ЦВЕТОВАЯ ПАЛИТРА - кружки */
+    .palette{
+      display:flex;flex-wrap:wrap;gap:12px;margin-top:16px;justify-content:center;
+    }
+    .color-dot{
+      width:32px;height:32px;border-radius:50%;
+      border:2px solid rgba(255,255,255,.3);
+      box-shadow:0 2px 8px rgba(0,0,0,.2);
+      transition:.3s ease;
+    }
+    .color-dot:hover{transform:scale(1.1);box-shadow:0 4px 12px rgba(0,0,0,.3)}
+    .color-dot::after{
+      content:attr(data-color);
+      position:absolute;
+      bottom:-24px;left:50%;transform:translateX(-50%);
+      font-size:10px;color:var(--muted);white-space:nowrap;
+      opacity:0;transition:.3s ease;
+    }
+    .color-dot:hover::after{opacity:1}
+
     /* COUNTDOWN */
     .countdown{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));margin-top:16px}
     .tile{
       border:1px solid rgba(255,255,255,.15);
       border-radius:14px;
-      padding:18px 10px;text-align:center;background:rgba(255,255,255,.04);
+      padding:18px 10px;text-align:center;background:rgba(255,255,255,.08);  /* увеличил для равномерности */
       transition:.3s ease;
     }
     .tile:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.25)}
@@ -135,7 +154,7 @@
     .field label{display:block;margin-bottom:8px;font-family:'Cormorant Garamond',serif;color:var(--sand);font-size:18px}
     .input,.select{
       width:100%;padding:14px 14px;border-radius:10px;
-      border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);  /* увеличил для равномерности */
       color:var(--warm);font-family:'Lora',serif;font-size:16px
     }
     .input:focus,.select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(196,154,108,.18)}
@@ -150,6 +169,8 @@
     @media (max-width:600px){
       h1{font-size:48px}
       .names{font-size:36px}
+      .palette{gap:8px}
+      .color-dot{width:28px;height:28px}
     }
   </style>
 </head>
@@ -196,9 +217,20 @@
         <div class="title">Дресс‑код</div>
         <p class="text">
           <i class="fa-solid fa-palette"></i>
-          Будем рады, если поддержите палитру: бургунди, тёмно‑бордовый, песочный, шоколадный.
-          Акценты: рыже‑оранжевый, лазурно‑тёмно‑синий, бежевый, светло‑серый.
+          Будем рады, если поддержите нашу палитру:
         </p>
+        
+        <!-- Цветовые кружки -->
+        <div class="palette">
+          <div class="color-dot" data-color="Бургунди" style="background:#722F37;"></div>
+          <div class="color-dot" data-color="Тёмно-бордовый" style="background:#5A1F26;"></div>
+          <div class="color-dot" data-color="Песочный" style="background:#F3EDE6;"></div>
+          <div class="color-dot" data-color="Шоколадный" style="background:#8B4513;"></div>
+          <div class="color-dot" data-color="Рыже-оранжевый" style="background:#FF8C42;"></div>
+          <div class="color-dot" data-color="Лазурно-синий" style="background:#1E3A8A;"></div>
+          <div class="color-dot" data-color="Бежевый" style="background:#F5F5DC;"></div>
+          <div class="color-dot" data-color="Светло-серый" style="background:#F8F9FA;"></div>
+        </div>
       </div>
     </section>
 
