@@ -4,502 +4,291 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Павел & Адэлаида — Свадебное приглашение</title>
 
-  <!-- OG -->
-  <meta property="og:title" content="Мы женимся! Павел и Адэлаида 💍">
-  <meta property="og:description" content="Ждём вас 18 октября 2025 года в 14:00 в ресторане «Gogra».">
-  <meta property="og:image" content="https://artistakss.github.io/wedding-invite/mountains.jpg">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://artistakss.github.io/wedding-invite/">
-
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --burgundy: #5E1A24;
-      --light-beige: #F2E7C9;
-      --dark-plum: #3F0D1F;
-      --olive: #7D8B60;
-      --deep-green: #1F3D29;
-      --taupe: #D2C4BC;
-      --sand: #E6D0A4;
-      --dark-blue: #0D2F4E;
-      --terracotta: #B5462B;
-
-      /* Все акценты — бежевые */
-      --gold: var(--light-beige);
-
-      /* Rose-gold для заголовка */
-      --rose-gold-start: #b76e79;
-      --rose-gold-mid: #e7c6a5;
-      --rose-gold-end: #f6d8b6;
+      --burgundy: #7a0d1d;
+      --light-bg: #f5f3f0;
+      --text-dark: #2b2b2b;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Cormorant Garamond', serif;
-      color: #fff;
-      overflow-x: hidden;
-      background: #000;
-      font-size: 18px;
+      font-family: 'Montserrat', sans-serif;
+      background: var(--light-bg);
+      color: var(--text-dark);
+      font-size: 16px;
+      line-height: 1.6;
     }
 
-    /* Фон: «стеклянный» бордовый + розово‑золотая подложка */
-    .bg{
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background-image:
-        radial-gradient(1200px 800px at 15% 0%, rgba(246,216,182,0.28), rgba(246,216,182,0) 60%),
-        linear-gradient(135deg, rgba(94,26,36,0.78), rgba(63,13,31,0.78));
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: scroll;
-      background-blend-mode: multiply;
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px;
     }
 
-    .container { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
-
-    .section { padding: 80px 40px; position: relative; overflow: hidden; }
-
-    /* Тонкий верхний разделитель */
-    .section:not(.hero)::before{
-      content:'';
-      position:absolute; left:40px; right:40px; top:18px; height:1px;
-      background: linear-gradient(90deg, transparent, rgba(242,231,201,0.35), transparent);
-      pointer-events:none;
+    section {
+      background: #fff;
+      margin-bottom: 20px;
+      padding: 30px 20px;
+      border: 1px solid #e0e0e0;
     }
 
-    /* Силуэт гор сверху — едва видимый */
-    .section.hero { position: relative; }
-    .section.hero::after{
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('./mountainsTop.jpg') no-repeat center top;
-      background-size: 100% auto;
-      opacity: 0.14;
-      pointer-events: none;
-    }
-
-    /* Анимированные лепестки */
-    .petals{ position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; }
-    .petal{ position:absolute; width:8px; height:8px; background:var(--gold); border-radius:50% 0; opacity:.3; animation: float 8s infinite linear; }
-    @keyframes float{
-      0%{ transform:translateY(-100px) rotate(0deg); opacity:0; }
-      10%{ opacity:.3; }
-      90%{ opacity:.3; }
-      100%{ transform:translateY(100vh) rotate(360deg); opacity:0; }
-    }
-
-    /* Главный каллиграфический заголовок с «бегущим» бежевым бликом */
-    .main-title{
-      font-family: 'Great Vibes', cursive;
-      font-weight: 400;
-      font-size: 6.2rem;
-      text-align: center;
-      margin-bottom: 1.25rem;
-      background-image:
-        linear-gradient(90deg, var(--rose-gold-start), var(--rose-gold-mid), var(--rose-gold-end)),
-        linear-gradient(120deg, transparent 0%, rgba(242,231,201,0.9) 12%, transparent 24%);
-      background-size: 100% 100%, 200% 100%;
-      background-position: 0 0, -200% 0;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: shine 4.8s linear infinite;
-      letter-spacing: 1px;
-    }
-    @keyframes shine{ to { background-position: 0 0, 200% 0; } }
-
-    .invitation-text{
-      font-size: 1.4rem;
-      text-align: center;
-      margin: 1rem auto 1.5rem;
-      color: var(--light-beige);
-      text-shadow: 0 2px 4px rgba(0,0,0,0.45);
-      max-width: 720px;
-      font-style: normal;
-    }
-
-    .subheading{
-      text-align:center;
-      font-size: 1.6rem;
-      color:#fff;
-      margin-top: 0.5rem;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.35);
-      letter-spacing: 0.3px;
-    }
-
-    .ornament-line{
-      width: 120px; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      margin: 10px auto 16px;
-      opacity: 0.5;
-    }
-
-    .btn{
-      background: var(--gold);
-      color: var(--burgundy);
-      padding: 15px 30px;
-      border: none;
-      border-radius: 25px;
-      font-size: 1.1rem;
+    /* Заголовки */
+    h1, h2, h3 {
       font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--burgundy);
       text-align: center;
-      box-shadow: 0 4px 15px rgba(242,231,201,0.3);
     }
-    .btn:hover{ background:#e8dcbc; transform:translateY(-2px); box-shadow:0 6px 20px rgba(242,231,201,0.5); }
 
-    .section-title{
-      font-size: 2.4rem;
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    p {
       text-align: center;
-      margin-bottom: 1.6rem;
-      position: relative;
+      margin-bottom: 10px;
+    }
+
+    /* Фото */
+    .photo-frame {
+      width: 100%;
+      border: 1px solid #ddd;
+      overflow: hidden;
+      margin: 15px 0;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      display: block;
+    }
+
+    .photo-caption {
+      font-size: 15px;
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    /* Календарь */
+    .calendar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .calendar-date {
+      background: var(--burgundy);
       color: #fff;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    }
-    .section-title::after{
-      content:'';
-      position:absolute; bottom:-10px; left:50%;
-      transform:translateX(-50%);
-      width:60px; height:2px; background:var(--gold);
-      box-shadow:0 0 8px var(--gold);
-      opacity: 0.85;
-    }
-
-    .content{
-      text-align:center; font-size:1.2rem; line-height:1.85; max-width:600px; margin:0 auto;
-      text-shadow:0 1px 2px rgba(0,0,0,0.3); color:#fff;
+      font-size: 20px;
+      font-weight: 600;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px auto;
     }
 
-    /* Счётчик */
-    .countdown{ display:flex; justify-content:center; gap:20px; margin:1.25rem 0 0; flex-wrap:wrap; }
-    .countdown-item{ text-align:center; background:rgba(255,255,255,0.1); padding:15px; border-radius:10px; min-width:80px; text-shadow:0 1px 2px rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.12); backdrop-filter: blur(2px); }
-    .countdown-number{ font-size:2.1rem; font-weight:600; color:var(--gold); display:block; text-shadow:0 0 12px rgba(242,231,201,0.55); }
-    .countdown-label{ font-size:.92rem; margin-top:5px; opacity:0.9; }
-
-    /* Совместное фото — фон mountains.jpg с доминирующей бордовой дымкой, фото сильнее затемнено + «туман» */
-    .shared-photo { position: relative; padding: 80px 40px 28px; }
-    .shared-photo::before{
-      content:'';
-      position:absolute; inset:0;
-      background:
-        radial-gradient(1000px 600px at 50% 20%, rgba(255,255,255,0.06), rgba(255,255,255,0) 60%),
-        linear-gradient(135deg, rgba(94,26,36,0.90), rgba(63,13,31,0.90)),
-        url('./mountains.jpg') center/cover no-repeat;
-      pointer-events:none;
+    /* Тайминг */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
-    .photo-frame{
-      position: relative;
-      max-width: 740px; margin: 0 auto;
-      border-radius: 16px; overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.18);
-      box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+    .timeline-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 8px;
     }
-    .photo-frame::before{
-      content:'';
-      position:absolute; inset:0;
-      background:
-        radial-gradient(60% 40% at 50% 20%, rgba(255,255,255,0.18), rgba(255,255,255,0) 60%),
-        radial-gradient(80% 60% at 50% 120%, rgba(94,26,36,0.25), rgba(94,26,36,0) 60%);
-      filter: blur(10px);
-      pointer-events:none;
-    }
-    .photo-frame::after{
-      content:'';
-      position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.38), rgba(0,0,0,0.30));
-      pointer-events:none;
-    }
-    .photo-frame img{
-      width:100%; display:block;
-      filter: saturate(0.92) contrast(1.05) brightness(0.85);
-      opacity: 0.9;
-    }
-    .photo-caption{
-      text-align:center; margin-top:18px; color:#fff; font-size:1.15rem;
-      letter-spacing: 0.2px;
+    .timeline-time {
+      font-weight: 600;
+      color: var(--burgundy);
     }
 
     /* Дресс-код */
-    .color-palette{ display:flex; justify-content:center; gap:60px; margin:2rem 0; flex-wrap:wrap; }
-    .color-group{ display:flex; flex-direction:column; align-items:center; gap:25px; }
-    .color-group-title{ font-size:1.25rem; font-weight:600; color:var(--gold); text-shadow:0 0 12px rgba(242,231,201,0.7); margin-bottom:10px; }
-    .color-circles{
-      display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-start;
-      column-gap:48px; row-gap:38px; padding-bottom:8px;
+    .color-circles {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 20px 0;
     }
-    .color-circle{
-      width:50px; height:50px; border-radius:50%;
-      border:3px solid rgba(255,255,255,0.5); box-shadow:0 4px 15px rgba(0,0,0,0.3);
-      position:relative; transition:transform .3s ease; margin-bottom:30px;
-    }
-    .color-circle:hover{ transform:scale(1.08); }
-    .color-circle::after{
-      content:attr(data-color); position:absolute; bottom:-26px; left:50%; transform:translateX(-50%);
-      font-size:.92rem; color:var(--gold); white-space:nowrap; text-shadow:0 0 8px rgba(242,231,201,0.5); font-weight:500;
+    .color-circle {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      border: 1px solid #aaa;
     }
 
-    .soft-note{
-      margin-top: 8px;
-      font-size: 1.05rem;
-      color: var(--light-beige);
-      opacity: 0.95;
+    /* Кнопки */
+    .btn {
+      display: block;
+      background: var(--burgundy);
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 24px;
+      text-align: center;
+      border-radius: 6px;
+      font-weight: 500;
+      margin: 15px auto 0;
+      max-width: 240px;
+      transition: 0.2s;
     }
-
-    /* Программа */
-    .timeline{ display:flex; flex-direction:column; gap:20px; margin:2rem 0; }
-    .timeline-item{
-      display:flex; align-items:center; gap:20px; padding:15px;
-      background:rgba(255,255,255,0.07);
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,0.12);
-      text-shadow:0 1px 2px rgba(0,0,0,0.3);
-      backdrop-filter: blur(2px);
+    .btn:hover {
+      background: #600a15;
     }
-    .timeline-time{ font-weight:600; color:var(--gold); min-width:80px; text-shadow:0 0 8px rgba(242,231,201,0.5); }
-    .timeline-text{ flex:1; }
 
     /* Форма */
-    .rsvp-form{
-      background:rgba(255,255,255,0.1);
-      padding: 36px 30px;
-      border-radius:15px; margin:2.2rem 0 2.6rem;
-      border:1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(3px);
+    .rsvp-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
-    .form-group{ margin-bottom:22px; }
-    .form-group label{ display:block; margin-bottom:8px; font-weight:500; color:#fff; text-shadow:0 1px 2px rgba(0,0,0,0.5); }
-    .form-group input, .form-group select{
-      width:100%; padding:12px; border:2px solid rgba(255,255,255,0.28); border-radius:8px;
-      background:rgba(255,255,255,0.1); color:#fff; font-size:1.05rem; font-family:inherit;
+    .rsvp-form input, .rsvp-form select {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
     }
-    .form-group input::placeholder{ color:rgba(255,255,255,0.7); font-family:inherit; }
-
-    /* Едва заметные горы ниже формы — отдельно, чтобы не мешали полям */
-    .divider-mountains{
-      position: relative;
-      padding: 0 40px 140px;
-    }
-    .divider-mountains::after{
-      content:'';
-      position:absolute; left:0; right:0; bottom:0; top:auto; height:200px;
-      background: url('./mountainsTop.jpg') no-repeat center bottom;
-      background-size: 100% auto;
-      opacity: 0.12;
-      pointer-events:none;
+    .rsvp-form button {
+      border: none;
+      cursor: pointer;
     }
 
-    @media (max-width: 768px){
-      .section{ padding:60px 20px; }
-      .main-title{ font-size:4.8rem; }
-      .section-title{ font-size:2.1rem; }
-      .color-palette{ gap:40px; }
-      .color-circles{ column-gap:34px; row-gap:30px; }
-      .color-circle{ width:45px; height:45px; margin-bottom:26px; }
-      .shared-photo{ padding: 60px 20px 22px; }
-      .rsvp-form{ padding: 28px 22px; }
-      .divider-mountains{ padding: 0 20px 120px; }
+    /* Место проведения */
+    .place {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .place-img img {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+
+    .place-info {
+      max-width: 500px;
+    }
+
+    @media(min-width: 768px) {
+      .place {
+        flex-direction: row;
+        text-align: left;
+      }
+      .place-img, .place-info {
+        flex: 1;
+      }
+      .place-img {
+        max-width: 50%;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="bg"></div>
-  
   <div class="container">
-    <!-- Герой -->
-    <section class="section hero">
-      <div class="petals">
-        <div class="petal" style="left: 10%; animation-delay: 0s;"></div>
-        <div class="petal" style="left: 20%; animation-delay: 1s;"></div>
-        <div class="petal" style="left: 30%; animation-delay: 2s;"></div>
-        <div class="petal" style="left: 40%; animation-delay: 3s;"></div>
-        <div class="petal" style="left: 50%; animation-delay: 4s;"></div>
-        <div class="petal" style="left: 60%; animation-delay: 5s;"></div>
-        <div class="petal" style="left: 70%; animation-delay: 6s;"></div>
-        <div class="petal" style="left: 80%; animation-delay: 7s;"></div>
-        <div class="petal" style="left: 90%; animation-delay: 8s;"></div>
+    <!-- Шапка -->
+    <section>
+      <h1>Мы женимся!</h1>
+      <p>Если вы получили это сообщение от нас, то ждём вас 18-го октября 2025 года в ресторане «Gogra»</p>
+      <a href="https://2gis.kz/almaty/search/Ресторан%20Gogra" target="_blank" class="btn">Открыть карту</a>
+    </section>
+
+    <!-- Дата -->
+    <section class="calendar">
+      <h2>18 октября 2025</h2>
+      <div class="calendar-date">18</div>
+      <p>Начало в 14:00</p>
+    </section>
+
+    <!-- Фото -->
+    <section>
+      <div class="photo-frame">
+        <img src="./sharedphoto.jpg" alt="Павел и Адэлаида в горах">
       </div>
+      <div class="photo-caption">С теплом, Павел и Адэлаида</div>
+    </section>
 
-      <h1 class="main-title">Мы женимся!</h1>
-
-      <p class="invitation-text">Если вы получили это сообщение от нас, то ждём вас 18-го октября 2025 года в ресторане «Gogra»</p>
-
-      <div class="ornament-line"></div>
-      <div class="subheading">Локация</div>
-      <div style="text-align:center; margin-top: 10px;">
+    <!-- Место проведения -->
+    <section class="place">
+      <div class="place-img">
+        <img src="./rest.jpg" alt="Ресторан Gogra">
+      </div>
+      <div class="place-info">
+        <h2>Место проведения</h2>
+        <p>Наш праздник состоится в уютном ресторане «Gogra» в горах Алматы.</p>
         <a href="https://2gis.kz/almaty/search/Ресторан%20Gogra" target="_blank" class="btn">Открыть карту</a>
       </div>
     </section>
 
-    <!-- Обратный отсчёт -->
-    <section class="section">
-      <h2 class="section-title">18 октября 2025</h2>
-      <div class="content">
-        <p>Начало в 14:00</p>
-      </div>
-      <div class="countdown">
-        <div class="countdown-item">
-          <span class="countdown-number" id="days">0</span>
-          <div class="countdown-label">дней</div>
-        </div>
-        <div class="countdown-item">
-          <span class="countdown-number" id="hours">0</span>
-          <div class="countdown-label">часов</div>
-        </div>
-        <div class="countdown-item">
-          <span class="countdown-number" id="minutes">0</span>
-          <div class="countdown-label">минут</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Совместное фото -->
-    <section class="section shared-photo">
-      <figure class="photo-frame">
-        <img src="./sharedphoto.jpg" alt="Павел и Адэлаида в горах">
-      </figure>
-      <div class="photo-caption">С теплом, Павел и Адэлаида</div>
-    </section>
-
     <!-- Дресс-код -->
-    <section class="section">
-      <h2 class="section-title">Дресс-код</h2>
-      <div class="content">
-        <div class="color-palette">
-          <div class="color-group">
-            <div class="color-group-title">Основная гамма</div>
-            <div class="color-circles">
-              <div class="color-circle" style="background:#5E1A24;" data-color="Бордовый"></div>
-              <div class="color-circle" style="background:#F2E7C9;" data-color="Бежевый"></div>
-              <div class="color-circle" style="background:#3F0D1F;" data-color="Сливовый"></div>
-              <div class="color-circle" style="background:#7D8B60;" data-color="Оливковый"></div>
-              <div class="color-circle" style="background:#1F3D29;" data-color="Зелёный"></div>
-            </div>
-          </div>
-          <div class="color-group">
-            <div class="color-group-title">Акцентная гамма</div>
-            <div class="color-circles">
-              <div class="color-circle" style="background:#D2C4BC;" data-color="Таупе"></div>
-              <div class="color-circle" style="background:#E6D0A4;" data-color="Песочный"></div>
-              <div class="color-circle" style="background:#0D2F4E;" data-color="Синий"></div>
-              <div class="color-circle" style="background:#B5462B;" data-color="Терракота"></div>
-            </div>
-          </div>
-        </div>
-        <p class="soft-note">
-          Будем также рады если вы поддержите нашу цветовую гамму в одежде.
-          Не столь критично, но приятно. Главное - приходите.
-        </p>
+    <section>
+      <h2>Дресс-код</h2>
+      <p>Будем рады, если вы поддержите нашу цветовую гамму.</p>
+      <div class="color-circles">
+        <div class="color-circle" style="background:#5E1A24;"></div>
+        <div class="color-circle" style="background:#F2E7C9;"></div>
+        <div class="color-circle" style="background:#3F0D1F;"></div>
+        <div class="color-circle" style="background:#7D8B60;"></div>
       </div>
     </section>
 
     <!-- Программа дня -->
-    <section class="section">
-      <h2 class="section-title">Программа дня</h2>
+    <section>
+      <h2>Программа дня</h2>
       <div class="timeline">
         <div class="timeline-item">
           <div class="timeline-time">14:00</div>
-          <div class="timeline-text">Сбор гостей и приветственный коктейль</div>
+          <div>Сбор гостей и приветственный коктейль</div>
         </div>
         <div class="timeline-item">
           <div class="timeline-time">14:30</div>
-          <div class="timeline-text">Церемония бракосочетания</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">15:30</div>
-          <div class="timeline-text">Фотосессия с гостями</div>
+          <div>Церемония бракосочетания</div>
         </div>
         <div class="timeline-item">
           <div class="timeline-time">16:30</div>
-          <div class="timeline-text">Торжественный ужин</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">18:00</div>
-          <div class="timeline-text">Танцы и развлечения</div>
+          <div>Торжественный ужин</div>
         </div>
       </div>
     </section>
 
-    <!-- Подтверждение присутствия -->
-    <section class="section rsvp">
-      <h2 class="section-title">Подтверждение присутствия</h2>
-      <div class="content">
-        <p>Пожалуйста, подтвердите своё присутствие до 1 октября 2025 года</p>
-      </div>
-      <form id="rsvp" class="rsvp-form">
-        <div class="form-group">
-          <label for="name">Ваше имя *</label>
-          <input type="text" id="name" name="name" required placeholder="Введите ваше имя">
-        </div>
-        <div class="form-group">
-          <label for="phone">Телефон *</label>
-          <input type="tel" id="phone" name="phone" required placeholder="+7 (___) ___-__-__">
-        </div>
-        <div class="form-group">
-          <label for="attending">Будете ли вы присутствовать? *</label>
-          <select id="attending" name="attending" required>
-            <option value="">Выберите ответ</option>
-            <option value="yes">Да, буду присутствовать</option>
-            <option value="no">К сожалению, не смогу</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="guests">Количество гостей (включая вас)</label>
-          <select id="guests" name="guests">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </div>
-        <button type="submit" class="btn">Подтвердить присутствие</button>
+    <!-- Подтверждение -->
+    <section>
+      <h2>Подтверждение присутствия</h2>
+      <form class="rsvp-form" id="rsvp">
+        <input type="text" id="name" name="name" placeholder="Ваше имя *" required>
+        <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+        <select id="attending" name="attending" required>
+          <option value="">Будете ли вы присутствовать?</option>
+          <option value="yes">Да, буду присутствовать</option>
+          <option value="no">К сожалению, не смогу</option>
+        </select>
+        <select id="guests" name="guests">
+          <option value="1">1 гость</option>
+          <option value="2">2 гостя</option>
+          <option value="3">3 гостя</option>
+          <option value="4">4 гостя</option>
+        </select>
+        <button type="submit" class="btn">Мы будем!</button>
       </form>
     </section>
-
-    <!-- Едва заметные горы ниже формы -->
-    <section class="divider-mountains" aria-hidden="true"></section>
   </div>
 
   <script>
-    // Счётчик обратного отсчета
-    function updateCountdown(){
-      const weddingDate = new Date('2025-10-18T14:00:00');
-      const now = new Date();
-      const diff = weddingDate - now;
-      if (diff > 0){
-        const days = Math.floor(diff / (1000*60*60*24));
-        const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-        const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
-        document.getElementById('days').textContent = days;
-        document.getElementById('hours').textContent = hours;
-        document.getElementById('minutes').textContent = minutes;
-      }
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 60000);
-
-    // Анимация лепестков
-    function createPetal(){
-      const petal = document.createElement('div');
-      petal.className = 'petal';
-      petal.style.left = Math.random()*100 + '%';
-      petal.style.animationDelay = Math.random()*8 + 's';
-      document.querySelector('.petals').appendChild(petal);
-      setTimeout(()=>petal.remove(), 8000);
-    }
-    setInterval(createPetal, 2000);
-
-    // Форма RSVP — WhatsApp Адэлаиды
     document.getElementById('rsvp').addEventListener('submit', function(e){
       e.preventDefault();
       const formData = new FormData(this);
@@ -507,7 +296,7 @@
       const message = `RSVP:
 Имя: ${data.name}
 Телефон: ${data.phone}
-Присутствие: ${data.attending === 'yes' ? 'Да, буду присутствовать' : 'К сожалению, не смогу'}
+Присутствие: ${data.attending === 'yes' ? 'Да' : 'Нет'}
 Количество гостей: ${data.guests}`;
       const whatsappUrl = `https://wa.me/77014630000?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
