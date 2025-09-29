@@ -10,7 +10,7 @@
   <style>
     :root {
       --burgundy: #7a0d1d;
-      --light-bg: #f5f3f0;
+      --light-bg: #f7f6f2;
       --text-dark: #2b2b2b;
     }
 
@@ -25,7 +25,7 @@
     }
 
     .container {
-      max-width: 960px;
+      max-width: 720px;
       margin: 0 auto;
       padding: 20px;
     }
@@ -34,26 +34,19 @@
       background: #fff;
       margin-bottom: 20px;
       padding: 30px 20px;
-      border: 1px solid #e0e0e0;
+      border: 1px solid #e5e5e5;
     }
 
     /* Заголовки */
-    h1, h2, h3 {
+    h1, h2 {
       font-weight: 600;
       margin-bottom: 12px;
       color: var(--burgundy);
       text-align: center;
     }
 
-    h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
+    h1 { font-size: 26px; }
+    h2 { font-size: 20px; }
 
     p {
       text-align: center;
@@ -61,34 +54,26 @@
     }
 
     /* Фото */
-    .photo-frame {
-      width: 100%;
-      border: 1px solid #ddd;
-      overflow: hidden;
-      margin: 15px 0;
-    }
-
     .photo-frame img {
       width: 100%;
       display: block;
+      border: 1px solid #ddd;
     }
 
     .photo-caption {
-      font-size: 15px;
+      font-size: 14px;
       text-align: center;
-      margin-top: 5px;
+      margin-top: 8px;
     }
 
     /* Календарь */
     .calendar {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      text-align: center;
     }
     .calendar-date {
       background: var(--burgundy);
       color: #fff;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 600;
       border-radius: 50%;
       width: 60px;
@@ -96,73 +81,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 10px auto;
-    }
-
-    /* Тайминг */
-    .timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .timeline-item {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 8px;
-    }
-    .timeline-time {
-      font-weight: 600;
-      color: var(--burgundy);
-    }
-
-    /* Дресс-код */
-    .color-circles {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin: 20px 0;
-    }
-    .color-circle {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      border: 1px solid #aaa;
-    }
-
-    /* Кнопки */
-    .btn {
-      display: block;
-      background: var(--burgundy);
-      color: #fff;
-      text-decoration: none;
-      padding: 14px 24px;
-      text-align: center;
-      border-radius: 6px;
-      font-weight: 500;
-      margin: 15px auto 0;
-      max-width: 240px;
-      transition: 0.2s;
-    }
-    .btn:hover {
-      background: #600a15;
-    }
-
-    /* Форма */
-    .rsvp-form {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .rsvp-form input, .rsvp-form select {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 15px;
-    }
-    .rsvp-form button {
-      border: none;
-      cursor: pointer;
+      margin: 12px auto;
     }
 
     /* Место проведения */
@@ -177,7 +96,6 @@
     .place-img img {
       width: 100%;
       border: 1px solid #ddd;
-      border-radius: 6px;
     }
 
     .place-info {
@@ -195,6 +113,71 @@
       .place-img {
         max-width: 50%;
       }
+    }
+
+    /* Тайминг */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .timeline-item {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .timeline-time {
+      font-weight: 600;
+      color: var(--burgundy);
+    }
+
+    /* Дресс-код */
+    .color-circles {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .color-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid #aaa;
+    }
+
+    /* Кнопки */
+    .btn {
+      display: block;
+      background: var(--burgundy);
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 20px;
+      text-align: center;
+      border-radius: 0;
+      font-weight: 500;
+      margin: 15px auto 0;
+      max-width: 240px;
+      transition: 0.2s;
+    }
+    .btn:hover {
+      background: #600a15;
+    }
+
+    /* Форма */
+    .rsvp-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .rsvp-form input, .rsvp-form select {
+      padding: 10px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+    .rsvp-form button {
+      border: none;
+      cursor: pointer;
     }
   </style>
 </head>
