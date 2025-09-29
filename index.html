@@ -1,17 +1,18 @@
 <!DOCTYPE html>
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Павел & Адэлаида — Свадебное приглашение</title>
+  <title>Свадебное приглашение</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --burgundy: #7a0d1d;
-      --light-bg: #f7f6f2;
-      --text-dark: #2b2b2b;
+      --light-bg: #f5f3f0;
+      --dark: #2b2b2b;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -19,129 +20,112 @@
     body {
       font-family: 'Montserrat', sans-serif;
       background: var(--light-bg);
-      color: var(--text-dark);
-      font-size: 16px;
+      color: var(--dark);
       line-height: 1.6;
     }
 
     .container {
-      max-width: 720px;
+      max-width: 640px;
       margin: 0 auto;
       padding: 20px;
     }
 
     section {
-      background: #fff;
-      margin-bottom: 20px;
-      padding: 30px 20px;
-      border: 1px solid #e5e5e5;
+      margin-bottom: 32px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* Заголовки */
     h1, h2 {
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--burgundy);
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
       text-align: center;
+      color: var(--burgundy);
+      margin-bottom: 12px;
     }
-
-    h1 { font-size: 26px; }
-    h2 { font-size: 20px; }
+    h1 { font-size: 32px; }
+    h2 { font-size: 22px; }
 
     p {
       text-align: center;
       margin-bottom: 10px;
+      font-size: 15px;
     }
 
     /* Фото */
-    .photo-frame img {
+    .photo img {
       width: 100%;
+      border: 2px solid #ddd;
       display: block;
-      border: 1px solid #ddd;
-    }
-
-    .photo-caption {
-      font-size: 14px;
-      text-align: center;
-      margin-top: 8px;
+      filter: grayscale(100%);
     }
 
     /* Календарь */
     .calendar {
       text-align: center;
+      padding: 20px;
+      border: 1px solid #ddd;
+      background: #fff;
     }
-    .calendar-date {
+    .calendar-header {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      font-size: 14px;
+    }
+    .calendar-day {
+      padding: 6px;
+      border-radius: 50%;
+    }
+    .calendar-day.active {
       background: var(--burgundy);
       color: #fff;
-      font-size: 18px;
-      font-weight: 600;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 12px auto;
-    }
-
-    /* Место проведения */
-    .place {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      align-items: center;
-      text-align: center;
-    }
-
-    .place-img img {
-      width: 100%;
-      border: 1px solid #ddd;
-    }
-
-    .place-info {
-      max-width: 500px;
-    }
-
-    @media(min-width: 768px) {
-      .place {
-        flex-direction: row;
-        text-align: left;
-      }
-      .place-img, .place-info {
-        flex: 1;
-      }
-      .place-img {
-        max-width: 50%;
-      }
+      font-weight: bold;
     }
 
     /* Тайминг */
     .timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      background: var(--burgundy);
+      color: #fff;
+      padding: 20px;
+    }
+    .timeline h2 {
+      color: #fff;
     }
     .timeline-item {
-      display: flex;
-      justify-content: space-between;
-      padding-bottom: 8px;
-      border-bottom: 1px solid #eee;
+      margin: 10px 0;
+      font-size: 15px;
     }
     .timeline-time {
-      font-weight: 600;
-      color: var(--burgundy);
+      font-weight: bold;
     }
 
     /* Дресс-код */
+    .dresscode {
+      padding: 20px;
+      border: 1px solid #ddd;
+      background: #fff;
+    }
     .color-circles {
       display: flex;
       justify-content: center;
       gap: 12px;
-      margin: 20px 0;
+      margin-top: 12px;
     }
     .color-circle {
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       border: 1px solid #aaa;
     }
@@ -149,142 +133,115 @@
     /* Кнопки */
     .btn {
       display: block;
+      text-align: center;
+      padding: 12px;
+      text-decoration: none;
+      font-weight: 500;
+      max-width: 220px;
+      margin: 15px auto 0;
+      transition: 0.3s;
+    }
+    .btn.fill {
       background: var(--burgundy);
       color: #fff;
-      text-decoration: none;
-      padding: 12px 20px;
-      text-align: center;
-      border-radius: 0;
-      font-weight: 500;
-      margin: 15px auto 0;
-      max-width: 240px;
-      transition: 0.2s;
     }
-    .btn:hover {
-      background: #600a15;
+    .btn.fill:hover { background: #5a0a16; }
+    .btn.outline {
+      border: 1px solid var(--burgundy);
+      color: var(--burgundy);
+    }
+    .btn.outline:hover {
+      background: var(--burgundy);
+      color: #fff;
     }
 
-    /* Форма */
-    .rsvp-form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    /* RSVP */
+    .rsvp {
+      text-align: center;
+      border: 1px solid #ddd;
+      padding: 20px;
+      background: #fff;
     }
-    .rsvp-form input, .rsvp-form select {
-      padding: 10px;
-      border: 1px solid #ccc;
-      font-size: 15px;
-    }
-    .rsvp-form button {
-      border: none;
-      cursor: pointer;
-    }
+    .rsvp p { margin-bottom: 15px; }
   </style>
 </head>
-
 <body>
   <div class="container">
+
     <!-- Шапка -->
     <section>
-      <h1>Мы женимся!</h1>
-      <p>Если вы получили это сообщение от нас, то ждём вас 18-го октября 2025 года в ресторане «Gogra»</p>
-      <a href="https://2gis.kz/almaty/search/Ресторан%20Gogra" target="_blank" class="btn">Открыть карту</a>
-    </section>
-
-    <!-- Дата -->
-    <section class="calendar">
-      <h2>18 октября 2025</h2>
-      <div class="calendar-date">18</div>
-      <p>Начало в 14:00</p>
+      <h1>Павел & Адэлаида</h1>
+      <p>Wedding Day • 18.10.25</p>
     </section>
 
     <!-- Фото -->
-    <section>
-      <div class="photo-frame">
-        <img src="./sharedphoto.jpg" alt="Павел и Адэлаида в горах">
-      </div>
-      <div class="photo-caption">С теплом, Павел и Адэлаида</div>
+    <section class="photo">
+      <img src="./sharedphoto.jpg" alt="Павел и Адэлаида">
+      <p>Дорогие родные и близкие, мы женимся и мечтаем разделить этот день с вами!</p>
     </section>
 
-    <!-- Место проведения -->
-    <section class="place">
-      <div class="place-img">
-        <img src="./rest.jpg" alt="Ресторан Gogra">
+    <!-- Календарь -->
+    <section class="calendar">
+      <div class="calendar-header">Октябрь 2025</div>
+      <div class="calendar-grid">
+        <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div>
+        <div></div><div></div><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
+        <div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div>
+        <div>13</div><div>14</div><div>15</div><div>16</div><div>17</div><div class="calendar-day active">18</div><div>19</div>
+        <div>20</div><div>21</div><div>22</div><div>23</div><div>24</div><div>25</div><div>26</div>
+        <div>27</div><div>28</div><div>29</div><div>30</div><div>31</div>
       </div>
-      <div class="place-info">
-        <h2>Место проведения</h2>
-        <p>Наш праздник состоится в уютном ресторане «Gogra» в горах Алматы.</p>
-        <a href="https://2gis.kz/almaty/search/Ресторан%20Gogra" target="_blank" class="btn">Открыть карту</a>
-      </div>
+    </section>
+
+    <!-- Место -->
+    <section>
+      <h2>Место проведения</h2>
+      <img src="./rest.jpg" alt="Ресторан Gogra" style="width:100%; filter: grayscale(100%); border:2px solid #ddd;">
+      <p>Наш праздник состоится в ресторане «Gogra», в живописных горах Алматы.</p>
+      <a href="https://2gis.kz/almaty/search/Ресторан%20Gogra" target="_blank" class="btn outline">Посмотреть карту</a>
+    </section>
+
+    <!-- Тайминг -->
+    <section class="timeline">
+      <h2>Тайминг</h2>
+      <div class="timeline-item"><span class="timeline-time">14:00</span> — Сбор гостей, фуршет</div>
+      <div class="timeline-item"><span class="timeline-time">16:00</span> — Церемония бракосочетания</div>
+      <div class="timeline-item"><span class="timeline-time">18:00</span> — Банкет</div>
     </section>
 
     <!-- Дресс-код -->
-    <section>
+    <section class="dresscode">
       <h2>Дресс-код</h2>
-      <p>Будем рады, если вы поддержите нашу цветовую гамму.</p>
+      <p>Будем рады, если вы поддержите нашу цветовую гамму!</p>
       <div class="color-circles">
         <div class="color-circle" style="background:#5E1A24;"></div>
-        <div class="color-circle" style="background:#F2E7C9;"></div>
+        <div class="color-circle" style="background:#E6DED1;"></div>
         <div class="color-circle" style="background:#3F0D1F;"></div>
         <div class="color-circle" style="background:#7D8B60;"></div>
       </div>
     </section>
 
-    <!-- Программа дня -->
-    <section>
-      <h2>Программа дня</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-time">14:00</div>
-          <div>Сбор гостей и приветственный коктейль</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">14:30</div>
-          <div>Церемония бракосочетания</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">16:30</div>
-          <div>Торжественный ужин</div>
-        </div>
-      </div>
+    <!-- RSVP -->
+    <section class="rsvp">
+      <h2>Вы придёте?</h2>
+      <p>Мы будем очень рады видеть вас на нашем торжестве! Пожалуйста, подтвердите своё присутствие.</p>
+      <a href="https://wa.me/77014630000?text=Я%20буду%20на%20свадьбе!" target="_blank" class="btn fill">Мы будем!</a>
     </section>
 
-    <!-- Подтверждение -->
-    <section>
-      <h2>Подтверждение присутствия</h2>
-      <form class="rsvp-form" id="rsvp">
-        <input type="text" id="name" name="name" placeholder="Ваше имя *" required>
-        <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
-        <select id="attending" name="attending" required>
-          <option value="">Будете ли вы присутствовать?</option>
-          <option value="yes">Да, буду присутствовать</option>
-          <option value="no">К сожалению, не смогу</option>
-        </select>
-        <select id="guests" name="guests">
-          <option value="1">1 гость</option>
-          <option value="2">2 гостя</option>
-          <option value="3">3 гостя</option>
-          <option value="4">4 гостя</option>
-        </select>
-        <button type="submit" class="btn">Мы будем!</button>
-      </form>
-    </section>
   </div>
 
   <script>
-    document.getElementById('rsvp').addEventListener('submit', function(e){
-      e.preventDefault();
-      const formData = new FormData(this);
-      const data = Object.fromEntries(formData.entries());
-      const message = `RSVP:
-Имя: ${data.name}
-Телефон: ${data.phone}
-Присутствие: ${data.attending === 'yes' ? 'Да' : 'Нет'}
-Количество гостей: ${data.guests}`;
-      const whatsappUrl = `https://wa.me/77014630000?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
-      alert('Спасибо! Откроется WhatsApp для отправки подтверждения.');
-    });
+    // Анимация появления блоков
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(sec => observer.observe(sec));
   </script>
 </body>
 </html>
