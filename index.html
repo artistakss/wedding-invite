@@ -6,7 +6,7 @@
   <title>Свадебное приглашение</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -18,10 +18,11 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Cormorant Garamond', serif;
       background: var(--light-bg);
       color: var(--dark);
-      line-height: 1.6;
+      line-height: 1.7;
+      font-size: 18px;
     }
 
     .container {
@@ -43,19 +44,17 @@
 
     /* Заголовки */
     h1, h2 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
+      font-weight: 600;
       text-align: center;
       color: var(--burgundy);
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
-    h1 { font-size: 32px; }
-    h2 { font-size: 22px; }
+    h1 { font-size: 36px; }
+    h2 { font-size: 26px; }
 
     p {
       text-align: center;
-      margin-bottom: 10px;
-      font-size: 15px;
+      margin-bottom: 12px;
     }
 
     /* Фото */
@@ -64,28 +63,29 @@
       border: 2px solid #ddd;
       display: block;
       filter: grayscale(100%);
+      border-radius: 8px;
     }
 
     /* Календарь */
     .calendar {
       text-align: center;
       padding: 20px;
-      border: 1px solid #ddd;
+      border: 1px dashed var(--burgundy);
+      border-radius: 10px;
       background: #fff;
     }
     .calendar-header {
-      font-family: 'Playfair Display', serif;
-      font-size: 18px;
-      margin-bottom: 10px;
+      font-size: 20px;
+      margin-bottom: 12px;
     }
     .calendar-grid {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 6px;
-      font-size: 14px;
+      gap: 8px;
+      font-size: 16px;
     }
     .calendar-day {
-      padding: 6px;
+      padding: 8px;
       border-radius: 50%;
     }
     .calendar-day.active {
@@ -99,13 +99,11 @@
       background: var(--burgundy);
       color: #fff;
       padding: 20px;
-    }
-    .timeline h2 {
-      color: #fff;
+      border-radius: 10px;
     }
     .timeline-item {
-      margin: 10px 0;
-      font-size: 15px;
+      margin: 12px 0;
+      font-size: 17px;
     }
     .timeline-time {
       font-weight: bold;
@@ -114,7 +112,8 @@
     /* Дресс-код */
     .dresscode {
       padding: 20px;
-      border: 1px solid #ddd;
+      border: 1px dashed var(--burgundy);
+      border-radius: 10px;
       background: #fff;
     }
     .color-circles {
@@ -124,8 +123,8 @@
       margin-top: 12px;
     }
     .color-circle {
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       border: 1px solid #aaa;
     }
@@ -137,17 +136,19 @@
       padding: 12px;
       text-decoration: none;
       font-weight: 500;
-      max-width: 220px;
+      max-width: 240px;
       margin: 15px auto 0;
+      border-radius: 10px;
       transition: 0.3s;
     }
     .btn.fill {
       background: var(--burgundy);
       color: #fff;
+      border: 1px dashed var(--burgundy);
     }
     .btn.fill:hover { background: #5a0a16; }
     .btn.outline {
-      border: 1px solid var(--burgundy);
+      border: 1px dashed var(--burgundy);
       color: var(--burgundy);
     }
     .btn.outline:hover {
@@ -158,11 +159,29 @@
     /* RSVP */
     .rsvp {
       text-align: center;
-      border: 1px solid #ddd;
+      border: 1px dashed var(--burgundy);
       padding: 20px;
+      border-radius: 10px;
       background: #fff;
     }
-    .rsvp p { margin-bottom: 15px; }
+
+    /* Таймер */
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .countdown-item {
+      text-align: center;
+      font-size: 18px;
+    }
+    .countdown-item span {
+      display: block;
+      font-size: 22px;
+      font-weight: bold;
+      color: var(--burgundy);
+    }
   </style>
 </head>
 <body>
@@ -176,8 +195,9 @@
 
     <!-- Фото -->
     <section class="photo">
+      <p>Если вы получили это сообщение от нас, то ждём вас 18-го октября 2025 года в 14:00 в ресторане «Gogra»</p>
       <img src="./sharedphoto.jpg" alt="Павел и Адэлаида">
-      <p>Дорогие родные и близкие, мы женимся и мечтаем разделить этот день с вами!</p>
+      <p><i>С теплом, Павел и Адэлаида</i></p>
     </section>
 
     <!-- Календарь -->
@@ -191,12 +211,20 @@
         <div>20</div><div>21</div><div>22</div><div>23</div><div>24</div><div>25</div><div>26</div>
         <div>27</div><div>28</div><div>29</div><div>30</div><div>31</div>
       </div>
+
+      <!-- Таймер -->
+      <div class="countdown" id="countdown">
+        <div class="countdown-item"><span id="days">0</span>дн</div>
+        <div class="countdown-item"><span id="hours">0</span>ч</div>
+        <div class="countdown-item"><span id="minutes">0</span>мин</div>
+        <div class="countdown-item"><span id="seconds">0</span>сек</div>
+      </div>
     </section>
 
     <!-- Место -->
     <section>
       <h2>Место проведения</h2>
-      <img src="./rest.jpg" alt="Ресторан Gogra" style="width:100%; filter: grayscale(100%); border:2px solid #ddd;">
+      <img src="./rest.jpg" alt="Ресторан Gogra" style="width:100%; filter: grayscale(100%); border:2px solid #ddd; border-radius:8px;">
       <p>Наш праздник состоится в ресторане «Gogra», в живописных горах Алматы.</p>
       <a href="https://2gis.kz/almaty/search/Ресторан%20Gogra" target="_blank" class="btn outline">Посмотреть карту</a>
     </section>
@@ -212,7 +240,7 @@
     <!-- Дресс-код -->
     <section class="dresscode">
       <h2>Дресс-код</h2>
-      <p>Будем рады, если вы поддержите нашу цветовую гамму!</p>
+      <p>Будем также рады если вы поддержите нашу цветовую гамму в одежде.<br>Не столь критично, но приятно. Главное — приходите ❤️</p>
       <div class="color-circles">
         <div class="color-circle" style="background:#5E1A24;"></div>
         <div class="color-circle" style="background:#E6DED1;"></div>
@@ -240,8 +268,26 @@
         }
       });
     }, { threshold: 0.1 });
-
     sections.forEach(sec => observer.observe(sec));
+
+    // Обратный отсчёт
+    const weddingDate = new Date("Oct 18, 2025 14:00:00").getTime();
+    const countdown = document.getElementById("countdown");
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }, 1000);
   </script>
 </body>
 </html>
