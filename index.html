@@ -6,7 +6,7 @@
   <title>Свадебное приглашение</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;500;600&display=swap" rel="stylesheet" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -19,7 +19,7 @@
 
     body {
       font-family: 'Cormorant Infant', serif;
-      background: var(--light-bg) url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+      background: var(--light-bg) url("https://www.transparenttextures.com/patterns/old-wall.png");
       color: var(--dark);
       line-height: 1.8;
       font-size: 20px;
@@ -47,10 +47,25 @@
       font-family: 'Cormorant Infant', serif;
       text-align: center;
       color: var(--burgundy);
-      margin-bottom: 24px;
+      margin-bottom: 16px;
     }
-    h1 { font-size: 50px; font-weight: 600; letter-spacing: 1px; }
+    h1 { font-size: 52px; font-weight: 600; }
     h2 { font-size: 34px; font-weight: 500; }
+
+    .subtitle {
+      text-align: center;
+      font-style: italic;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .date {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 6px;
+      margin-bottom: 20px;
+    }
 
     p {
       text-align: center;
@@ -75,6 +90,20 @@
       border: 1px dashed var(--burgundy);
       border-radius: 12px;
       background: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .calendar::after {
+      content: "";
+      background: url("https://i.ibb.co/pfXgHzN/mountain-silhouette.png") no-repeat center bottom;
+      background-size: 80%;
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+      height: 120px;
+      opacity: 0.2;
+      pointer-events: none;
     }
     .calendar-header {
       font-size: 28px;
@@ -207,8 +236,9 @@
 
     <!-- Шапка -->
     <section>
+      <div class="subtitle">Wedding Day</div>
       <h1>Павел & Адэлаида</h1>
-      <p>Wedding Day • 18.10.25</p>
+      <div class="date">18 | 10 | 25</div>
     </section>
 
     <!-- Фото -->
